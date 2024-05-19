@@ -1,7 +1,3 @@
-/**
- * Demo file for Ex3.
- *
- */
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -10,6 +6,7 @@
 #include "Board.hpp"
 using namespace std;
 using namespace ariel;
+
 
 int main()
 {
