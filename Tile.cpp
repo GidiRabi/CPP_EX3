@@ -25,18 +25,18 @@ Tile::Construction Tile::getConstruction() const {
     return construction;
 }
 
-Player* Tile::getOwner() const {
+std::shared_ptr<Player> Tile::getOwner() const {
     return owner;
 }
 
-void Tile::buildRoad(Player& player) {
+void Tile::buildRoad(std::shared_ptr<Player> player) {
     // Implement this method
 }
 
-void Tile::buildSettlement(Player& player) {
+void Tile::buildSettlement(std::shared_ptr<Player> player) {
     // Implement this method
 }
 
-void Tile::buildCity(Player& player) {
+void Tile::buildCity(std::shared_ptr<Player> player) {
     // Implement this method
 }

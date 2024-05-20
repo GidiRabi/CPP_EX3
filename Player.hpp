@@ -1,4 +1,7 @@
 // Player.hpp
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include <string>
 #include <vector>
 #include <map>
@@ -17,6 +20,12 @@ public:
     void trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount);
     void buyDevelopmentCard();
     void printPoints();
+    void setTurn(bool turn) {
+        isTurn = turn;
+    }
+    std::map<Tile::Resource, int> getResources() {
+        return resources;
+    }
 private:
     std::string name;
     std::map<Tile::Resource, int> resources;  // Map to keep track of resources
@@ -27,3 +36,6 @@ private:
     int roads;  // Number of road segments the player has
 };
 }
+
+
+#endif // PLAYER_HPP

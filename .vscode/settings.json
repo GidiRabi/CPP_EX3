@@ -48,6 +48,8 @@
         "__tree": "cpp",
         "map": "cpp",
         "optional": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "set": "cpp",
+        "random": "cpp"
     }
 }

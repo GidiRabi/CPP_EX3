@@ -1,7 +1,14 @@
-// Tile.hpp
-#include "Player.hpp"
+// Forward declarations to resolve circular dependencies
+namespace ariel {
+    class Player;
+    class Tile;
+}
 
-namespace ariel{
+// Tile.hpp
+#include <memory>  // for std::shared_ptr
+#include <string>
+
+namespace ariel {
 class Tile {
 public:
     enum class Resource {
@@ -25,16 +32,19 @@ public:
     int getNumber() const;
     const std::string& getName() const;
     Construction getConstruction() const;
-    Player* getOwner() const;
+    std::shared_ptr<Player> getOwner() const;  // Changed to shared_ptr
+    bool hasNumberToken() const;
+    void setNumberToken(int number);
 
-    void buildRoad(Player& player);
-    void buildSettlement(Player& player);
-    void buildCity(Player& player);
+    void buildRoad(std::shared_ptr<Player> player);  // Changed to shared_ptr
+    void buildSettlement(std::shared_ptr<Player> player);  // Changed to shared_ptr
+    void buildCity(std::shared_ptr<Player> player);  // Changed to shared_ptr
 private:
     std::string name;
     Resource resource;
     int number;
+    bool numberToken;  // Indicates whether the tile has a number token
     Construction construction;
-    Player* owner;  // Pointer to the player who owns the construction. Null if no construction.
+    std::shared_ptr<Player> owner;  // Changed to shared_ptr
 };
 }

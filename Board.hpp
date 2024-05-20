@@ -1,19 +1,32 @@
 // Board.hpp
+#ifndef BOARD_HPP
+#define BOARD_HPP
+
 #include "Tile.hpp"
-#include "Player.hpp"
 #include <vector>
 #include <map>
+#include <set>
+#include <memory> // Include this to use std::shared_ptr
 
-namespace ariel{
+using namespace std;
+
+namespace ariel {
 class Board {
 public:
-    Board(const std::vector<Tile>& tiles);
-    void assignStartingResources(Player& player);
+    Board();
+    void initializeBoard();
+    void assignStartingResources(std::shared_ptr<Player> player);
+    void placeInitialSettlements(std::shared_ptr<Player> player); // Add this line
     // other public methods as needed
 private:
-    std::vector<Tile> tiles;
-    std::map<Player, std::vector<std::pair<int, int>>> settlements;  // Map to keep track of settlements
-    std::map<Player, std::vector<std::pair<int, int>>> roads;  // Map to keep track of roads
-    // private members as needed
+    vector<Tile> tiles;
+    map<int, set<int>> graph;  // Graph to represent the possible locations for settlements and roads
+    map<std::shared_ptr<Player>, set<int>> playerSettlements;  // Map to keep track of settlements
+    map<int, set<Tile>> vertexTiles;  // Map to keep track of tiles adjacent to each vertex
+    map<std::shared_ptr<Player>, set<pair<int, int>>> playerRoads;  // Map to keep track of roads
+    void createTiles();
+    void assignNumberTokens();
 };
 }
+
+#endif
