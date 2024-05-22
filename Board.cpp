@@ -40,7 +40,7 @@ void Board::assignNumberTokens() {
     }
 }
 
-void Board::assignStartingResources(std::shared_ptr<Player> player) {
+void Board::assignStartingResources(Player player) {
     // Get the player's settlements
     auto settlements = playerSettlements[player];
 
@@ -52,7 +52,7 @@ void Board::assignStartingResources(std::shared_ptr<Player> player) {
         // Iterate over the adjacent tiles
         for (auto& tile : adjacentTiles) {
             // Ensure the resource is in the map before incrementing
-            auto resources = player->getResources();
+            auto resources = player.getResources();
             if (resources.count(tile.getResource()) > 0) {
                 resources[tile.getResource()]++;
             }
@@ -60,7 +60,7 @@ void Board::assignStartingResources(std::shared_ptr<Player> player) {
     }
 }
 
-void Board::placeInitialSettlements(std::shared_ptr<Player> player) {
+void Board::placeInitialSettlements(Player player) {
     // Randomly select two vertices for the player's initial settlements
     std::random_device rd;
     std::mt19937 gen(rd());

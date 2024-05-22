@@ -36,12 +36,12 @@
 ## Rules of the Game
 
 The game consists of a board containing 19 plots of land surrounded by the sea. Each plot of land provides some resource (except for the desert). The plots of land in the game are:
-- **Forest** (yields wood)
-- **Hills** (yields bricks)
-- **Pasture** (yields wool)
-- **Fields** (yields grain)
-- **Mountains** (yields ore)
-- **Desert** (yields nothing)
+- **1. Forest** (yields wood)
+- **2. Hills** (yields bricks)
+- **3. Pasture** (yields wool)
+- **4. Fields** (yields grain)
+- **5. Mountains** (yields ore)
+- **6. Desert** (yields nothing)
 
 Each part of the map is assigned a number between 2 and 12.
 

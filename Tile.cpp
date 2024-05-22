@@ -24,19 +24,3 @@ const std::string& Tile::getName() const {
 Tile::Construction Tile::getConstruction() const {
     return construction;
 }
-
-std::shared_ptr<Player> Tile::getOwner() const {
-    return owner;
-}
-
-void Tile::buildRoad(std::shared_ptr<Player> player) {
-    // Implement this method
-}
-
-void Tile::buildSettlement(std::shared_ptr<Player> player) {
-    // Implement this method
-}
-
-void Tile::buildCity(std::shared_ptr<Player> player) {
-    // Implement this method
-}

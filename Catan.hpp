@@ -10,14 +10,14 @@ namespace ariel{
 
 class Catan {
 public:
-    Catan(std::shared_ptr<Player> p1, std::shared_ptr<Player> p2, std::shared_ptr<Player> p3);
+    Catan(Player p1, Player p2, Player p3);
     void ChooseStartingPlayer();
     Board getBoard();
     void printWinner();
 private:
-    std::shared_ptr<Player> player1;
-    std::shared_ptr<Player> player2;
-    std::shared_ptr<Player> player3;
+    Player player1;
+    Player player2;
+    Player player3;
     Board board;
     // other private members as needed
 };
