@@ -1,8 +1,9 @@
 // Tile.hpp
 #include <string>
 
-
 namespace ariel {
+class Player;
+
 class Tile {
 public:
     enum class Resource {
@@ -34,6 +35,6 @@ private:
     Resource resource;
     int number;
     Construction construction;
-    Player owner;  
+    Player* owner;  
 };
 }

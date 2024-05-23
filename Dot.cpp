@@ -1,34 +1,38 @@
 // Dot.cpp
 #include "Dot.hpp"
 
-using namespace ariel;
+namespace ariel {
+    Dot::Dot(const std::vector<Tile>& neighborTiles) : neighborTiles(neighborTiles) {}
 
-void Dot::addTile(const Tile& tile) {
-    tiles.push_back(tile);
-}
-
-void Dot::buildSettlement(Player* player) {
-    owner = player;
-}
-
-void Dot::upgradeToCity() {
-    if (owner != nullptr) {
-        isCity = true;
+    void Dot::buildSettlement(Player* player) {
+        if (buildingType == 0) {
+            owner = player;
+            buildingType++;
+        }else{
+			throw std::invalid_argument("This Intersection is already occupied");
+		}
     }
-}
 
-const std::vector<Tile>& Dot::getTiles() const {
-    return tiles;
-}
+    void Dot::upgradeToCity() {
+        if (buildingType == 1) {
+            buildingType++;
+        }else if(buildingType == 2){
+			throw std::invalid_argument("This dot is already a city");
+		}else{
+			throw std::invalid_argument("You must build a settlement first to upgrade to a city");
+		}
+		
+    }
 
-Player* Dot::getOwner() const {
-    return owner;
-}
+    Player* Dot::getOwner() const {
+        return owner;
+    }
 
-bool Dot::hasSettlement() const {
-    return owner != nullptr && !isCity;
-}
+    std::vector<Tile> Dot::getNeighborTiles() const {
+        return neighborTiles;
+    }
 
-bool Dot::hasCity() const {
-    return owner != nullptr && isCity;
+    int Dot::getBuildingType() const {
+        return buildingType;
+    }
 }

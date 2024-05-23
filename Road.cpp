@@ -1,22 +1,16 @@
 // Road.cpp
 #include "Road.hpp"
 
-using namespace ariel;
+namespace ariel {
+	Road::Road(Dot* dot1, Dot* dot2) : dot1(dot1), dot2(dot2){}
 
-Road::Road(Dot* start, Dot* end) : start(start), end(end){}
+    void Road::BuildRoard(Player* player) {
+        if (owner == nullptr) {
+            owner = player;
+        }
+    }
 
-void Road::buildRoad(Player* player) {
-    owner = player;
-}
-
-Player* Road::getOwner() const {
-    return owner;
-}
-
-const Dot* Road::getStart() const {
-    return start;
-}
-
-const Dot* Road::getEnd() const {
-    return end;
+    Player* Road::getOwner() const {
+        return owner;
+    }
 }

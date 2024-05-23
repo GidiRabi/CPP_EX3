@@ -8,18 +8,14 @@
 namespace ariel {
     class Road {
     public:
-        Road(Dot* start, Dot* end);
+		Road(Dot* dot1, Dot* dot2);
 
-        void buildRoad(Player* player);
-
+		void BuildRoard(Player* player);
         Player* getOwner() const;
-        const Dot* getStart() const;
-        const Dot* getEnd() const;
-
     private:
-        Dot* start;
-        Dot* end;
         Player* owner = nullptr;
+		Dot* dot1;
+		Dot* dot2;
     };
 }
 

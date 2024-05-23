@@ -3,6 +3,8 @@
 #define BOARD_HPP
 
 #include "Tile.hpp"
+#include "Dot.hpp"
+#include "Road.hpp"
 #include <vector>
 #include <map>
 #include <set>
@@ -15,14 +17,12 @@ public:
     Board();
     void initializeBoard();
     void assignStartingResources(Player player);
-    void placeInitialSettlements(Player player); // Add this line
-    // other public methods as needed
+    void placeInitialSettlements(Player player); 
+    void upgradeSettlementToCity(Player player, int settlementLocation);
 private:
-    vector<Tile> tiles;
-    map<int, set<int>> graph;  // Graph to represent the possible locations for settlements and roads
-    map<Player, set<int>> playerSettlements;  // Map to keep track of settlements
-    map<int, set<Tile>> vertexTiles;  // Map to keep track of tiles adjacent to each vertex
-    map<Player, set<pair<int, int>>> playerRoads;  // Map to keep track of roads
+    vector<Tile> tiles;  // Vector to keep track of tiles in order
+    vector<Dot> Intersections;  // Map to keep track of settlements and cities
+    vector<Road> playerRoads;  // Vector to keep track of roads in order
     void createTiles();
     void assignNumberTokens();
 };

@@ -5,8 +5,7 @@
 using namespace std;
 using namespace ariel;
 
-Catan::Catan(Player p1, Player p2, Player p3) 
-    : player1(p1), player2(p2), player3(p3) {
+Catan::Catan(Player p1, Player p2, Player p3) : player1(p1), player2(p2), player3(p3) {
 
     // Players place their initial settlements on the board
     board.placeInitialSettlements(player1);

@@ -2,26 +2,25 @@
 #ifndef DOT_HPP
 #define DOT_HPP
 
-#include <vector>
 #include "Tile.hpp"
 #include "Player.hpp"
 
 namespace ariel {
     class Dot {
     public:
-        void addTile(const Tile& tile);
+        Dot(const std::vector<Tile>& neighborTiles);
         void buildSettlement(Player* player);
         void upgradeToCity();
-
-        const std::vector<Tile>& getTiles() const;
         Player* getOwner() const;
-        bool hasSettlement() const;
-        bool hasCity() const;
+		std::vector<Tile> getNeighborTiles() const;
+		int getBuildingType() const;
+		std::vector<Road*> getConnectedRoads() const; 
 
     private:
-        std::vector<Tile> tiles;
+        std::vector<Tile> neighborTiles;
         Player* owner = nullptr;
-        bool isCity = false;
+        int buildingType = 0;  // 0 = no building, 1 = settlement, 2 = city
+		std::vector<Road*> connectedRoads;
     };
 }
 
