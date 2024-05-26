@@ -33,6 +33,7 @@ private:
     std::map<Tile::Resource, int> resources;  // Map to keep track of resources
     int points;
     bool isTurn;
+	int startingSettlements;
     std::vector<std::string> developmentCards;
     std::vector<Road*> roads;  // Vector to keep track of roads the player has built
 };

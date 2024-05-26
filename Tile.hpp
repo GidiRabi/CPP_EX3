@@ -22,18 +22,17 @@ public:
         CITY
     };
 
-    Tile(const std::string& name, Resource resource, int number);
+    Tile(const std::string& name, Resource resource, int token);
     Resource getResource() const;
     int getNumber() const;
     const std::string& getName() const;
     Construction getConstruction() const;
     bool hasNumberToken() const;
-    void setNumberToken(int number);
  
 private:
     std::string name;
     Resource resource;
-    int number;
+    int token;
     Construction construction;
     Player* owner;  
 };

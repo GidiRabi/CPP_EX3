@@ -5,7 +5,7 @@ using namespace std;
 using namespace ariel;
 
 ariel::Player::Player(const std::string& name) 
-    : name(name), isTurn(false), points(2) , settlements(2), roads(2) {
+    : name(name), isTurn(false), points(2) , startingSettlements(2), roads(2) {
     // Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
     // Initialize the resources map with 0 for each resource type
@@ -17,11 +17,11 @@ ariel::Player::Player(const std::string& name)
     resources[Tile::Resource::DESERT] = 0;
 }
 
-void Player::placeSettelemnt(const std::vector<std::string>& places, const std::vector<int>& placesNum, Board& board) {
+void placeSettelemnt(const std::vector<int>& placesNum, Board& board) {
     // Implement this method
 }
 
-void Player::placeRoad(const std::vector<std::string>& places, const std::vector<int>& placesNum, Board& board) {
+void placeRoad(const std::vector<int>& placesNum, Board& board) {
     // Implement this method
 }
 
