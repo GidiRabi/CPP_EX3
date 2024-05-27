@@ -27,7 +27,7 @@ public:
 
     Tile(const std::string& name, Resource resource, int token);
     Resource getResource() const;
-    int getNumber() const;
+    int getToken() const;
     const std::string& getName() const;
     Construction getConstruction() const;
     bool hasNumberToken() const;

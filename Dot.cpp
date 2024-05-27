@@ -34,14 +34,8 @@ namespace ariel {
         return neighborTiles;
     }
 
-    void Dot::getBuildingType() {
-        if(buildingType == 0){
-			std::cout << "There's no building on the " << number << "'th intersection" << std::endl;
-    	}else if (buildingType == 1){
-			std::cout << "There's a settlement on the " << number << "'th intersection" << std::endl;
-		}else{
-			std::cout << "There's a city on the " << number << "'th intersection" << std::endl;
-		}
+    int Dot::getBuildingType() {
+		return buildingType;
 	}
 
 	void Dot::addNeighbors(const std::vector<Dot*>& neighbors) {

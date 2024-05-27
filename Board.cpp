@@ -5,7 +5,7 @@
 #include <random>
 
 namespace ariel {
-Board::Board() {
+Board::Board() : robberLocation(10) {
     initializeBoard();
 }
 
@@ -229,26 +229,50 @@ void Board::createRoads() {
 
 }
 
-
-void Board::assignStartingResources(Dot& dot) {
-    // Get the owner of the settlement
-    Player* owner = dot.getOwner();
-
-    // Check if the dot has an owner
-    if (owner == nullptr) {
-        return;
+/**
+ * @brief Assign resources to players based on the rolled number.
+ *
+ * This function iterates through all the intersections (dots) on the board. 
+ * For each dot, it checks if there is an owner (a player) and if so, 
+ * iterates through all the neighboring tiles. If the tile's token number 
+ * matches the rolled number and the tile is not where the robber is located, 
+ * the function assigns resources to the player based on the building type 
+ * at the dot (settlement or city).
+ *
+ * @param rolledNumber The number rolled, determining which tiles produce resources.
+ */
+void Board::assignResources(int rolledNumber) {
+    for (Dot& dot : Intersections) {
+        Player* owner = dot.getOwner();
+        if (owner != nullptr) {
+            for (const Tile& tile : dot.getNeighborTiles()) {
+                int tileIndex = &tile - &tiles[0]; // Calculate the index of the tile
+                if (tile.getToken() == rolledNumber && tileIndex != robberLocation) {
+                    Tile::Resource resource = tile.getResource();
+                    int resourceAmount = (dot.getBuildingType() == 1) ? 1 : (dot.getBuildingType() == 2) ? 2 : 0;
+                    owner->getResources()[resource] += resourceAmount;
+                }
+            }
+        }
     }
+}
 
-    // Get the tiles adjacent to the settlement
-    auto adjacentTiles = dot.getNeighborTiles();
-
-    // Iterate over the adjacent tiles
-    for (auto& tile : adjacentTiles) {
-        // Get the resource of the tile
-        Tile::Resource resource = tile.getResource();
-
-        // Increment the resource count of the player
-        owner->getResources()[resource]++;
+/**
+ * @brief Assign starting resources to a specific dot.
+ *
+ * This function assigns resources to the owner of a specific dot 
+ * based on the neighboring tiles. This is used when a player places 
+ * their second settlement.
+ *
+ * @param dot The dot (intersection) to assign starting resources to.
+ */
+void Board::assignStartingResources(Dot& dot) {
+    Player* owner = dot.getOwner();
+    if (owner != nullptr) {
+        for (const Tile& tile : dot.getNeighborTiles()) {
+            Tile::Resource resource = tile.getResource();
+            owner->getResources()[resource]++;
+        }
     }
 }
 
@@ -268,4 +292,6 @@ std::map<std::string, int>& Board::getDevelopmentCards() {
     return developmentCards;
 }
 
+void Board::setRobberLocation(int location) {
+	robberLocation = location;
 }

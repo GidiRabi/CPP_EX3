@@ -13,7 +13,7 @@ Tile::Resource Tile::getResource() const {
     return resource;
 }
 
-int Tile::getNumber() const {
+int Tile::getToken() const {
     return token;
 }
 

@@ -10,7 +10,6 @@ Catan::Catan(Player p1, Player p2, Player p3) : player1(p1), player2(p2), player
 
 	//initialize the board
 	board = Board();
-	
 }
 
 void Catan::ChooseStartingPlayer() {
@@ -19,12 +18,7 @@ void Catan::ChooseStartingPlayer() {
     player2.setTurn(false);
     player3.setTurn(false);
 
-	player1.setPosition(1);
-    player2.setPosition(2);
-    player3.setPosition(3);
-
 	currentPlayerIndex = 1;
-
 }
 
 void Catan::endTurn(){
@@ -46,7 +40,8 @@ void Catan::endTurn(){
 		currentPlayerIndex = 1;
 	}
 
-    std::cout << currentPlayerIndex << "'s player turn is now active." << std::endl;
+	std::cout << "Player " << currentPlayerIndex << " has ended his turn." << std::endl;
+    std::cout << "It's player " << currentPlayerIndex << " turn now." << std::endl;
 }
 
 ariel::Board Catan::getBoard() {

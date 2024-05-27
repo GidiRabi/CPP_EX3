@@ -22,7 +22,7 @@ public:
     void placeSettelemnt(int placesNum, Board& board);
 	void upgradeToCity(int placesNum, Board& board);
     void placeRoad(int placesNum, Board& board);
-    void rollDice();
+    void rollDice(Board& board);
     void trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount);
     void buyDevelopmentCard(Board& board);
     int getPoints();
@@ -43,6 +43,7 @@ private:
     int points;
     bool isTurn;
     int startingSettlements;
+	int startingRoads;
     map<std::string, int> developmentCards = {
         {"Knight", 0},
         {"Victory Point", 0},

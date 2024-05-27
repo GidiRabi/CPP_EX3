@@ -7,7 +7,7 @@ using namespace std;
 using namespace ariel;
 
 ariel::Player::Player(const std::string& name) 
-	: name(name), isTurn(false), points(2) , startingSettlements(2), roads(2) {
+	: name(name), isTurn(false), points(2) , startingSettlements(2), roads(2), startingRoads(2) {
 	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
 	// Initialize the resources map with 0 for each resource type
@@ -45,22 +45,32 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         }
     }
 
-    // Check if the player has enough resources
-    bool hasEnoughResources = true;
-    for (const auto& [resource, amount] : requiredResources) {
-        if (this->resources[resource] < amount) {
-            std::cout << "Not enough resources to place a settlement." << std::endl;
-        	return;
-        }
-    }
+	// If this is the the first 2 settlements, no resources are required
+	if(startingSettlements <= 0){
+		// Check if the player has enough resources
+		bool hasEnoughResources = true;
+		for (const auto& [resource, amount] : requiredResources) {
+			if (this->resources[resource] < amount) {
+				std::cout << "Not enough resources to place a settlement." << std::endl;
+				return;
+			}
+		}
 
-    // Deduct the resources from the player
-    for (const auto& [resource, amount] : requiredResources) {
-        this->resources[resource] -= amount;
-    }
+		// Deduct the resources from the player
+		for (const auto& [resource, amount] : requiredResources) {
+			this->resources[resource] -= amount;
+		}
+	}
 
     // Place the settlement
     settlement.buildSettlement(this);
+
+	// If this is the second settlement, assign starting resources
+    if (startingSettlements == 1) {
+        board.assignStartingResources(settlement);
+    }
+    startingSettlements--;
+
     std::cout << "Settlement placed successfully at position " << placeNum << "." << std::endl;
 }
 
@@ -159,26 +169,45 @@ void Player::placeRoad(int placeNum, Board& board) {
         return;
     }
 
-    // Deduct the resources from the player
-    for (const auto& [resource, amount] : requiredResources) {
-        this->resources[resource] -= amount;
-    }
+	// If this is the the first 2 roads, no resources are required
+	if(startingRoads <= 0){
+		// Deduct the resources from the player
+		for (const auto& [resource, amount] : requiredResources) {
+			this->resources[resource] -= amount;
+		}
+	}
+	startingRoads--;
 
     // Set the owner of the road
-    roadToBuild.BuildRoard(this);  // Set the owner of the road
-
+    roadToBuild.BuildRoard(this); 
+	
     std::cout << "Road built successfully at position " << placeNum << "." << std::endl;
 }
 
 
-void Player::rollDice() {
+void Player::rollDice(Board& board) {
+    if (!this->isTurn) {
+        std::cout << "It is not your turn." << std::endl;
+        return;
+    }
 
-	if(this->isTurn == false) {
-		std::cout << "It is not your turn." << std::endl;
-		return;
-	}
+    // Roll two dice
+    std::srand(std::time(nullptr)); // Seed for randomness
+    int die1 = std::rand() % 6 + 1;
+    int die2 = std::rand() % 6 + 1;
+    int rolledNumber = die1 + die2;
 
-    // Implement this method
+    std::cout << "You rolled a " << rolledNumber << " (" << die1 << " + " << die2 << ")." << std::endl;
+
+    if (rolledNumber == 7) {
+        std::cout << "Since you rolled a 7. Insert a tile number to place the robber: ";
+        int tileNumber;
+        std::cin >> tileNumber;
+        board.setRobberLocation(tileNumber);
+        std::cout << "Robber placed on tile " << tileNumber << "." << std::endl;
+    } else {
+        board.assignResources(rolledNumber);
+    }
 }
 
 void Player::trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount) {

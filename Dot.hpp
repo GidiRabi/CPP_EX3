@@ -13,7 +13,7 @@ namespace ariel {
         void upgradeToCity();
         Player* getOwner() const;
 		std::vector<Tile> getNeighborTiles() const;
-		void getBuildingType();
+		int getBuildingType();
     	void addNeighbors(const std::vector<Dot*>& neighbors);
     	std::vector<Dot*> getNeighbors() const;
     private:
