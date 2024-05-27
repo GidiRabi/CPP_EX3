@@ -18,6 +18,9 @@ public:
     void initializeBoard();
     void assignStartingResources(Dot& dot);
     void upgradeSettlementToCity(Player player, int settlementLocation);
+	vector<Dot>& getIntersections();  // Getter for Intersections
+    vector<Tile>& getTiles();         // Getter for tiles
+    vector<Road>& getRoads();         // Getter for Roads
 private:
     vector<Tile> tiles;  // Vector to keep track of tiles in order
     vector<Dot> Intersections;  // Map to keep track of settlements and cities

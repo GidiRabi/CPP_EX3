@@ -251,4 +251,17 @@ void Board::assignStartingResources(Dot& dot) {
         owner->getResources()[resource]++;
     }
 }
+
+std::vector<Dot>& Board::getIntersections() {
+    return Intersections;
+}
+
+std::vector<Tile>& Board::getTiles() {
+    return tiles;
+}
+
+std::vector<Road>& Board::getRoads() {
+    return Roads;
+}
+
 }

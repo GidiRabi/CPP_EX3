@@ -19,7 +19,7 @@ ariel::Player::Player(const std::string& name)
 void Player::placeSettelemnt(const std::vector<int>& placesNum, Board& board) {
     for (int placeNum : placesNum) {
         // Check if the settlement is already owned
-        Dot& settlement = board.Intersections[placeNum];
+        Dot& settlement = board.getIntersections()[placeNum];
         if (settlement.getOwner() != nullptr) {
             std::cout << "This settlement is already owned by another player." << std::endl;
             continue;
@@ -27,8 +27,7 @@ void Player::placeSettelemnt(const std::vector<int>& placesNum, Board& board) {
 
         // Check neighboring settlements
         bool neighborOwned = false;
-        for (Road* road : settlement.getConnectedRoads()) {
-            Dot* neighbor = (road->getDot1() == &settlement) ? road->getDot2() : road->getDot1();
+        for (Dot* neighbor : settlement.getNeighbors()) {
             if (neighbor->getOwner() != nullptr) {
                 neighborOwned = true;
                 break;
