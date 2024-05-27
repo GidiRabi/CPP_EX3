@@ -264,4 +264,8 @@ std::vector<Road>& Board::getRoads() {
     return Roads;
 }
 
+std::map<std::string, int>& Board::getDevelopmentCards() {
+    return developmentCards;
+}
+
 }

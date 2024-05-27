@@ -19,16 +19,16 @@ int main()
     catan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
     Board board = catan.getBoard(); // get the board of the game.
     vector<string> places = {"Forest", "Hills"};
-    vector<int> placesNum = {5, 6};
+    int placesNum = 5;
     p1.placeSettelemnt(placesNum, board);
     p1.placeRoad(placesNum, board);
     vector<string> places = {"Agricultural Land", "Desert"};
-    vector<int> placesNum = {3, 4};
+    int placesNum = 3;
     p1.placeSettelemnt(placesNum, board);
     p1.placeRoad(placesNum, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
 
     vector<string> places = {"Mountains", "Pasture Land"};
-    vector<int> placesNum = {4, 9};
+    int placesNum = 9;
     p2.placeSettelemnt(placesNum, board);
     p2.placeRoad(placesNum, board);
     try
@@ -39,22 +39,22 @@ int main()
     {
         cout << e.what() << endl;
     }
-    vector<int> placesNum = {5, 9};
+    int placesNum = 5;
     p2.placeSettelemnt(placesNum, board);
     p2.placeRoad(placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
 
     vector<string> places = {"Mountains", "Pasture Land"};
-    vector<int> placesNum = {3, 8};
+    int placesNum = 8;
     p3.placeSettelemnt(placesNum, board);
     p3.placeRoad(placesNum, board);
     vector<string> places = {"Agricultural Land", "Pasture Land"};
-    vector<int> placesNum = {3, 9};
+    int placesNum = 3;
     p3.placeSettelemnt(placesNum, board);
     p3.placeRoad(placesNum, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
 
     // p1 has wood,bricks, and wheat, p2 has wood, ore, and wool, p3 has ore, wool, wheat.
     p1.rollDice();                                    // Lets say it's print 4. Then, p2 gets ore from the mountations.
-    p1.placeRoad({5, 6}, board); // p1 continues to build a road.
+    p1.placeRoad(6, board); // p1 continues to build a road.
     p1.endTurn();                                     // p1 ends his turn.
 
     p2.rollDice(); // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
@@ -77,7 +77,7 @@ int main()
     p1.endTurn();                        // p1 ends his turn.
 
     p2.rollDice();           // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
-    p2.buyDevelopmentCard(); // p2 buys a development card. Lets say it is a bonus points card.
+    p2.buyDevelopmentCard(board); // p2 buys a development card. Lets say it is a bonus points card.
     p2.endTurn();            // p2 ends his turn.
 
     p1.printPoints(); // p1 has 2 points because it has two settelments.

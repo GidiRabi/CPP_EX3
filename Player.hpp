@@ -19,16 +19,17 @@ struct TradeItem {
 class Player {
 public:
     Player(const std::string& name);
-    void placeSettelemnt(const std::vector<int>& placesNum, Board& board);
-    void placeRoad(const std::vector<int>& placesNum, Board& board);
+    void placeSettelemnt(int placesNum, Board& board);
+	void upgradeToCity(int placesNum, Board& board);
+    void placeRoad(int placesNum, Board& board);
     void rollDice();
-    void endTurn();
     void trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount);
-    void buyDevelopmentCard();
+    void buyDevelopmentCard(Board& board);
     int getPoints();
 	void printPoints();
 	void printResources();
 	string getName();
+	bool getTurn();
     void setTurn(bool turn) {
         isTurn = turn;
     }
@@ -42,8 +43,14 @@ private:
     int points;
     bool isTurn;
     int startingSettlements;
-    std::vector<std::string> developmentCards;
-    std::vector<Road*> roads;  // Vector to keep track of roads the player has built
+    map<std::string, int> developmentCards = {
+        {"Knight", 0},
+        {"Victory Point", 0},
+        {"Road Building", 0},
+        {"Year of Plenty", 0},
+        {"Monopoly", 0}
+    };
+	std::vector<Road*> roads;  // Vector to keep track of roads the player has built
     Tile::Resource stringToResource(const std::string& resource);
 };
 

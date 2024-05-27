@@ -17,4 +17,11 @@ namespace ariel {
         return owner;
     }
 
+	Dot* Road::getDot1() const {
+    	return dot1;
+	}
+
+	Dot* Road::getDot2() const {
+		return dot2;
+	}
 }

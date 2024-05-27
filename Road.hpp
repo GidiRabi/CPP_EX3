@@ -12,6 +12,8 @@ namespace ariel {
 
 		void BuildRoard(Player* player);
         Player* getOwner() const;
+		Dot* getDot1() const;
+		Dot* getDot2() const;
     private:
         Player* owner = nullptr;
 		Dot* dot1;

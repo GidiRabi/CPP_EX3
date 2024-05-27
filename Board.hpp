@@ -13,6 +13,7 @@ using namespace std;
 
 namespace ariel {
 class Board {
+	
 public:
     Board();
     void initializeBoard();
@@ -21,6 +22,8 @@ public:
 	vector<Dot>& getIntersections();  // Getter for Intersections
     vector<Tile>& getTiles();         // Getter for tiles
     vector<Road>& getRoads();         // Getter for Roads
+	std::map<std::string, int>& getDevelopmentCards();
+
 private:
     vector<Tile> tiles;  // Vector to keep track of tiles in order
     vector<Dot> Intersections;  // Map to keep track of settlements and cities

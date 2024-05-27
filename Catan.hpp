@@ -13,11 +13,13 @@ public:
     void ChooseStartingPlayer();
     Board getBoard();
     void printWinner();
+	void endTurn();
 private:
     Player player1;
     Player player2;
     Player player3;
     Board board;
+	int currentPlayerIndex;
 };
 }
 
