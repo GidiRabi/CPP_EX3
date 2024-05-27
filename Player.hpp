@@ -6,9 +6,15 @@
 #include <vector>
 #include <map>
 #include "Board.hpp"
-#include "Tile.hpp"  // Include this to access the Resource enum
+#include "Tile.hpp"
 
 namespace ariel{
+
+struct TradeItem {
+    std::string type; // "resource"
+    std::string name; // Name of the resource
+    int amount;       // Amount of the resource
+};
 
 class Player {
 public:
@@ -19,8 +25,10 @@ public:
     void endTurn();
     void trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount);
     void buyDevelopmentCard();
-    void printPoints();
+    int getPoints();
+	void printPoints();
 	void printResources();
+	string getName();
     void setTurn(bool turn) {
         isTurn = turn;
     }
@@ -33,9 +41,10 @@ private:
     std::map<Tile::Resource, int> resources;  // Map to keep track of resources
     int points;
     bool isTurn;
-	int startingSettlements;
+    int startingSettlements;
     std::vector<std::string> developmentCards;
     std::vector<Road*> roads;  // Vector to keep track of roads the player has built
+    Tile::Resource stringToResource(const std::string& resource);
 };
 
 }

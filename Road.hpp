@@ -8,7 +8,7 @@
 namespace ariel {
     class Road {
     public:
-		Road(Dot* dot1, Dot* dot2);
+		Road(Dot* dot1, Dot* dot2, int num);
 
 		void BuildRoard(Player* player);
         Player* getOwner() const;
@@ -16,6 +16,7 @@ namespace ariel {
         Player* owner = nullptr;
 		Dot* dot1;
 		Dot* dot2;
+		int number;
     };
 }
 

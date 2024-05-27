@@ -1,8 +1,11 @@
 // Dot.cpp
 #include "Dot.hpp"
+#include <iostream>
+
 
 namespace ariel {
-    Dot::Dot(const std::vector<Tile>& neighborTiles) : neighborTiles(neighborTiles) {}
+
+    Dot::Dot(const std::vector<Tile>& neighborTiles, int num) : neighborTiles(neighborTiles), number(num) {}
 
     void Dot::buildSettlement(Player* player) {
         if (buildingType == 0) {
@@ -14,14 +17,13 @@ namespace ariel {
     }
 
     void Dot::upgradeToCity() {
-        if (buildingType == 1) {
+		if(buildingType == 0){
+			throw std::invalid_argument("You must build a settlement first to upgrade to a city");
+		}else if (buildingType == 1) {
             buildingType++;
         }else if(buildingType == 2){
 			throw std::invalid_argument("This dot is already a city");
-		}else{
-			throw std::invalid_argument("You must build a settlement first to upgrade to a city");
 		}
-		
     }
 
     Player* Dot::getOwner() const {
@@ -32,7 +34,18 @@ namespace ariel {
         return neighborTiles;
     }
 
-    int Dot::getBuildingType() const {
-        return buildingType;
-    }
+    void Dot::getBuildingType() {
+        if(buildingType == 0){
+			std::cout << "There's no building on the " << number << "'th intersection" << std::endl;
+    	}else if (buildingType == 1){
+			std::cout << "There's a settlement on the " << number << "'th intersection" << std::endl;
+		}else{
+			std::cout << "There's a city on the " << number << "'th intersection" << std::endl;
+		}
+	}
+
+	std::vector<Road*> Dot::getConnectedRoads() const {
+		return connectedRoads;
+		}
+			
 }

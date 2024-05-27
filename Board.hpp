@@ -1,4 +1,4 @@
-// Board.hpp
+//Board.hpp
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
@@ -23,11 +23,11 @@ private:
     vector<Dot> Intersections;  // Map to keep track of settlements and cities
     vector<Road> Roads;  // Vector to keep track of roads in order
     void createTiles();
-	void createIntersections();
-	void createRoads();
-	map<std::string, int> developmentCards = {
-        {"Knight", 14},
-        {"Victory Point", 5},
+    void createIntersections();
+    void createRoads();
+    map<std::string, int> developmentCards = {
+        {"Knight", 3},
+        {"Victory Point", 4},
         {"Road Building", 2},
         {"Year of Plenty", 2},
         {"Monopoly", 2}

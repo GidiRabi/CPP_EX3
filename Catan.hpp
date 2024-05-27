@@ -2,7 +2,6 @@
 #ifndef CATAN_HPP
 #define CATAN_HPP
 
-#include <memory>  // for std::shared_ptr
 #include "Player.hpp"
 #include "Board.hpp"
 
@@ -19,7 +18,6 @@ private:
     Player player2;
     Player player3;
     Board board;
-    // other private members as needed
 };
 }
 

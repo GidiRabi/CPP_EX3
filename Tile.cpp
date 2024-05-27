@@ -5,7 +5,7 @@ using namespace std;
 using namespace ariel;
 
 Tile::Tile(const std::string& name, Tile::Resource resource, int number)
-    : name(name), resource(resource), number(number), construction(Construction::NONE), owner(nullptr) {
+    : name(name), resource(resource), token(number), construction(Construction::NONE), owner(nullptr) {
     // Initialize other members as needed
 }
 
@@ -14,7 +14,7 @@ Tile::Resource Tile::getResource() const {
 }
 
 int Tile::getNumber() const {
-    return number;
+    return token;
 }
 
 const std::string& Tile::getName() const {

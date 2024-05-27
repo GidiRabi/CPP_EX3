@@ -1,6 +1,6 @@
 // Board.cpp
 #include "Board.hpp"
-#include "Player.hpp" // Include the header file for the Player class
+#include "Player.hpp"
 #include <algorithm>
 #include <random>
 
@@ -38,135 +38,137 @@ void Board::createTiles() {
 }
 
 void Board::createIntersections() {
-    Intersections.push_back(Dot({tiles[0]})); // Dot 0
-    Intersections.push_back(Dot({tiles[0]})); // Dot 1
-    Intersections.push_back(Dot({tiles[1]})); // Dot 2
-    Intersections.push_back(Dot({tiles[0], tiles[1]})); // Dot 3
-    Intersections.push_back(Dot({tiles[0], tiles[2]})); // Dot 4
-    Intersections.push_back(Dot({tiles[2]})); // Dot 5
-    Intersections.push_back(Dot({tiles[3]})); // Dot 6
-    Intersections.push_back(Dot({tiles[1], tiles[3]})); // Dot 7
-    Intersections.push_back(Dot({tiles[0], tiles[1], tiles[4]})); // Dot 8
-    Intersections.push_back(Dot({tiles[0], tiles[2], tiles[4]})); // Dot 9
-    Intersections.push_back(Dot({tiles[2], tiles[5]})); // Dot 10
-    Intersections.push_back(Dot({tiles[5]})); // Dot 11
-    Intersections.push_back(Dot({tiles[3]})); // Dot 12
-    Intersections.push_back(Dot({tiles[1], tiles[3], tiles[6]})); // Dot 13
-    Intersections.push_back(Dot({tiles[1], tiles[4], tiles[6]})); // Dot 14
-    Intersections.push_back(Dot({tiles[2], tiles[4], tiles[7]})); // Dot 15
-    Intersections.push_back(Dot({tiles[2], tiles[5], tiles[7]})); // Dot 16
-    Intersections.push_back(Dot({tiles[5]})); // Dot 17
-    Intersections.push_back(Dot({tiles[3], tiles[8]})); // Dot 18
-    Intersections.push_back(Dot({tiles[3], tiles[6], tiles[8]})); // Dot 19
-    Intersections.push_back(Dot({tiles[4], tiles[6], tiles[9]})); // Dot 20
-    Intersections.push_back(Dot({tiles[4], tiles[7], tiles[9]})); // Dot 21
-    Intersections.push_back(Dot({tiles[5], tiles[7], tiles[10]})); // Dot 22
-    Intersections.push_back(Dot({tiles[5], tiles[10]})); // Dot 23
-    Intersections.push_back(Dot({tiles[8]})); // Dot 24
-    Intersections.push_back(Dot({tiles[6], tiles[8], tiles[11]})); // Dot 25
-    Intersections.push_back(Dot({tiles[6], tiles[9], tiles[11]})); // Dot 26
-    Intersections.push_back(Dot({tiles[7], tiles[9], tiles[12]})); // Dot 27
-    Intersections.push_back(Dot({tiles[7], tiles[10], tiles[12]})); // Dot 28
-    Intersections.push_back(Dot({tiles[10]})); // Dot 29
-    Intersections.push_back(Dot({tiles[8], tiles[13]})); // Dot 30
-    Intersections.push_back(Dot({tiles[8], tiles[11], tiles[13]})); // Dot 31
-    Intersections.push_back(Dot({tiles[9], tiles[11], tiles[14]})); // Dot 32
-    Intersections.push_back(Dot({tiles[9], tiles[12], tiles[14]})); // Dot 33
-    Intersections.push_back(Dot({tiles[10], tiles[12], tiles[15]})); // Dot 34
-    Intersections.push_back(Dot({tiles[10], tiles[15]})); // Dot 35
-    Intersections.push_back(Dot({tiles[13]})); // Dot 36
-    Intersections.push_back(Dot({tiles[11], tiles[13], tiles[16]})); // Dot 37
-    Intersections.push_back(Dot({tiles[11], tiles[14], tiles[16]})); // Dot 38
-    Intersections.push_back(Dot({tiles[12], tiles[14], tiles[17]})); // Dot 39
-    Intersections.push_back(Dot({tiles[12], tiles[15], tiles[17]})); // Dot 40
-    Intersections.push_back(Dot({tiles[15]})); // Dot 41
-    Intersections.push_back(Dot({tiles[13]})); // Dot 42
-    Intersections.push_back(Dot({tiles[13], tiles[16]})); // Dot 43
-    Intersections.push_back(Dot({tiles[14], tiles[16], tiles[18]})); // Dot 44
-    Intersections.push_back(Dot({tiles[14], tiles[17], tiles[18]})); // Dot 45
-    Intersections.push_back(Dot({tiles[15], tiles[17]})); // Dot 46
-    Intersections.push_back(Dot({tiles[15]})); // Dot 47
-    Intersections.push_back(Dot({tiles[16]})); // Dot 48
-    Intersections.push_back(Dot({tiles[16], tiles[18]})); // Dot 49
-    Intersections.push_back(Dot({tiles[17], tiles[18]})); // Dot 50
-    Intersections.push_back(Dot({tiles[17]})); // Dot 51
-    Intersections.push_back(Dot({tiles[18]})); // Dot 52
-	Intersections.push_back(Dot({tiles[18]})); // Dot 53
+	int number = 0;
+    Intersections.push_back(Dot({tiles[0]}, number++)); // Dot 0
+    Intersections.push_back(Dot({tiles[0]}, number++)); // Dot 1
+    Intersections.push_back(Dot({tiles[1]}, number++)); // Dot 2
+    Intersections.push_back(Dot({tiles[0], tiles[1]}, number++)); // Dot 3
+    Intersections.push_back(Dot({tiles[0], tiles[2]}, number++)); // Dot 4
+    Intersections.push_back(Dot({tiles[2]}, number++)); // Dot 5
+    Intersections.push_back(Dot({tiles[3]}, number++)); // Dot 6
+    Intersections.push_back(Dot({tiles[1], tiles[3]}, number++)); // Dot 7
+    Intersections.push_back(Dot({tiles[0], tiles[1], tiles[4]}, number++)); // Dot 8
+    Intersections.push_back(Dot({tiles[0], tiles[2], tiles[4]}, number++)); // Dot 9
+    Intersections.push_back(Dot({tiles[2], tiles[5]}, number++)); // Dot 10
+    Intersections.push_back(Dot({tiles[5]}, number++)); // Dot 11
+    Intersections.push_back(Dot({tiles[3]}, number++)); // Dot 12
+    Intersections.push_back(Dot({tiles[1], tiles[3], tiles[6]}, number++)); // Dot 13
+    Intersections.push_back(Dot({tiles[1], tiles[4], tiles[6]}, number++)); // Dot 14
+    Intersections.push_back(Dot({tiles[2], tiles[4], tiles[7]}, number++)); // Dot 15
+    Intersections.push_back(Dot({tiles[2], tiles[5], tiles[7]}, number++)); // Dot 16
+    Intersections.push_back(Dot({tiles[5]}, number++)); // Dot 17
+    Intersections.push_back(Dot({tiles[3], tiles[8]}, number++)); // Dot 18
+    Intersections.push_back(Dot({tiles[3], tiles[6], tiles[8]}, number++)); // Dot 19
+    Intersections.push_back(Dot({tiles[4], tiles[6], tiles[9]}, number++)); // Dot 20
+    Intersections.push_back(Dot({tiles[4], tiles[7], tiles[9]}, number++)); // Dot 21
+    Intersections.push_back(Dot({tiles[5], tiles[7], tiles[10]}, number++)); // Dot 22
+    Intersections.push_back(Dot({tiles[5], tiles[10]}, number++)); // Dot 23
+    Intersections.push_back(Dot({tiles[8]}, number++)); // Dot 24
+    Intersections.push_back(Dot({tiles[6], tiles[8], tiles[11]}, number++)); // Dot 25
+    Intersections.push_back(Dot({tiles[6], tiles[9], tiles[11]}, number++)); // Dot 26
+    Intersections.push_back(Dot({tiles[7], tiles[9], tiles[12]}, number++)); // Dot 27
+    Intersections.push_back(Dot({tiles[7], tiles[10], tiles[12]}, number++)); // Dot 28
+    Intersections.push_back(Dot({tiles[10]}, number++)); // Dot 29
+    Intersections.push_back(Dot({tiles[8], tiles[13]}, number++)); // Dot 30
+    Intersections.push_back(Dot({tiles[8], tiles[11], tiles[13]}, number++)); // Dot 31
+    Intersections.push_back(Dot({tiles[9], tiles[11], tiles[14]}, number++)); // Dot 32
+    Intersections.push_back(Dot({tiles[9], tiles[12], tiles[14]}, number++)); // Dot 33
+    Intersections.push_back(Dot({tiles[10], tiles[12], tiles[15]}, number++)); // Dot 34
+    Intersections.push_back(Dot({tiles[10], tiles[15]}, number++)); // Dot 35
+    Intersections.push_back(Dot({tiles[13]}, number++)); // Dot 36
+    Intersections.push_back(Dot({tiles[11], tiles[13], tiles[16]}, number++)); // Dot 37
+    Intersections.push_back(Dot({tiles[11], tiles[14], tiles[16]}, number++)); // Dot 38
+    Intersections.push_back(Dot({tiles[12], tiles[14], tiles[17]}, number++)); // Dot 39
+    Intersections.push_back(Dot({tiles[12], tiles[15], tiles[17]}, number++)); // Dot 40
+    Intersections.push_back(Dot({tiles[15]}, number++)); // Dot 41
+    Intersections.push_back(Dot({tiles[13]}, number++)); // Dot 42
+    Intersections.push_back(Dot({tiles[13], tiles[16]}, number++)); // Dot 43
+    Intersections.push_back(Dot({tiles[14], tiles[16], tiles[18]}, number++)); // Dot 44
+    Intersections.push_back(Dot({tiles[14], tiles[17], tiles[18]}, number++)); // Dot 45
+    Intersections.push_back(Dot({tiles[15], tiles[17]}, number++)); // Dot 46
+    Intersections.push_back(Dot({tiles[15]}, number++)); // Dot 47
+    Intersections.push_back(Dot({tiles[16]}, number++)); // Dot 48
+    Intersections.push_back(Dot({tiles[16], tiles[18]}, number++)); // Dot 49
+    Intersections.push_back(Dot({tiles[17], tiles[18]}, number++)); // Dot 50
+    Intersections.push_back(Dot({tiles[17]}, number++)); // Dot 51
+    Intersections.push_back(Dot({tiles[18]}, number++)); // Dot 52
+	Intersections.push_back(Dot({tiles[18]}, number++)); // Dot 53
 
 }
 
 void Board::createRoads() {
-	Roads.push_back(Road(&Intersections[0], &Intersections[1])); // Road 0
-    Roads.push_back(Road(&Intersections[0], &Intersections[3])); // Road 1
-    Roads.push_back(Road(&Intersections[1], &Intersections[4])); // Road 2
-    Roads.push_back(Road(&Intersections[2], &Intersections[3])); // Road 3
-    Roads.push_back(Road(&Intersections[4], &Intersections[5])); // Road 4
-    Roads.push_back(Road(&Intersections[2], &Intersections[7])); // Road 5
-    Roads.push_back(Road(&Intersections[3], &Intersections[8])); // Road 6
-    Roads.push_back(Road(&Intersections[4], &Intersections[9])); // Road 7
-    Roads.push_back(Road(&Intersections[5], &Intersections[10])); // Road 8
-    Roads.push_back(Road(&Intersections[6], &Intersections[7])); // Road 9
-    Roads.push_back(Road(&Intersections[8], &Intersections[9])); // Road 10
-    Roads.push_back(Road(&Intersections[10], &Intersections[11])); // Road 11
-    Roads.push_back(Road(&Intersections[6], &Intersections[12])); // Road 12
-    Roads.push_back(Road(&Intersections[7], &Intersections[13])); // Road 13
-    Roads.push_back(Road(&Intersections[8], &Intersections[14])); // Road 14
-    Roads.push_back(Road(&Intersections[9], &Intersections[15])); // Road 15
-    Roads.push_back(Road(&Intersections[10], &Intersections[16])); // Road 16
-    Roads.push_back(Road(&Intersections[11], &Intersections[17])); // Road 17
-    Roads.push_back(Road(&Intersections[13], &Intersections[14])); // Road 18
-    Roads.push_back(Road(&Intersections[15], &Intersections[16])); // Road 19
-    Roads.push_back(Road(&Intersections[12], &Intersections[18])); // Road 20
-    Roads.push_back(Road(&Intersections[13], &Intersections[19])); // Road 21
-    Roads.push_back(Road(&Intersections[14], &Intersections[20])); // Road 22
-    Roads.push_back(Road(&Intersections[15], &Intersections[21])); // Road 23
-    Roads.push_back(Road(&Intersections[16], &Intersections[22])); // Road 24
-    Roads.push_back(Road(&Intersections[17], &Intersections[23])); // Road 25
-    Roads.push_back(Road(&Intersections[18], &Intersections[19])); // Road 26
-    Roads.push_back(Road(&Intersections[20], &Intersections[21])); // Road 27
-    Roads.push_back(Road(&Intersections[22], &Intersections[23])); // Road 28
-    Roads.push_back(Road(&Intersections[18], &Intersections[24])); // Road 29
-    Roads.push_back(Road(&Intersections[19], &Intersections[25])); // Road 30
-    Roads.push_back(Road(&Intersections[20], &Intersections[26])); // Road 31
-    Roads.push_back(Road(&Intersections[21], &Intersections[27])); // Road 32
-    Roads.push_back(Road(&Intersections[22], &Intersections[28])); // Road 33
-    Roads.push_back(Road(&Intersections[23], &Intersections[29])); // Road 34
-    Roads.push_back(Road(&Intersections[25], &Intersections[26])); // Road 35
-    Roads.push_back(Road(&Intersections[27], &Intersections[28])); // Road 36
-    Roads.push_back(Road(&Intersections[24], &Intersections[30])); // Road 37
-    Roads.push_back(Road(&Intersections[25], &Intersections[31])); // Road 38
-    Roads.push_back(Road(&Intersections[26], &Intersections[32])); // Road 39
-    Roads.push_back(Road(&Intersections[27], &Intersections[33])); // Road 40
-    Roads.push_back(Road(&Intersections[28], &Intersections[34])); // Road 41
-    Roads.push_back(Road(&Intersections[29], &Intersections[35])); // Road 42
-    Roads.push_back(Road(&Intersections[30], &Intersections[31])); // Road 43
-    Roads.push_back(Road(&Intersections[32], &Intersections[33])); // Road 44
-    Roads.push_back(Road(&Intersections[34], &Intersections[35])); // Road 45
-    Roads.push_back(Road(&Intersections[30], &Intersections[36])); // Road 46
-    Roads.push_back(Road(&Intersections[31], &Intersections[37])); // Road 47
-    Roads.push_back(Road(&Intersections[32], &Intersections[38])); // Road 48
-    Roads.push_back(Road(&Intersections[33], &Intersections[39])); // Road 49
-    Roads.push_back(Road(&Intersections[34], &Intersections[40])); // Road 50
-    Roads.push_back(Road(&Intersections[35], &Intersections[41])); // Road 51
-    Roads.push_back(Road(&Intersections[37], &Intersections[38])); // Road 52
-    Roads.push_back(Road(&Intersections[39], &Intersections[40])); // Road 53
-    Roads.push_back(Road(&Intersections[36], &Intersections[42])); // Road 54
-    Roads.push_back(Road(&Intersections[37], &Intersections[43])); // Road 55
-    Roads.push_back(Road(&Intersections[38], &Intersections[44])); // Road 56
-    Roads.push_back(Road(&Intersections[39], &Intersections[45])); // Road 57
-    Roads.push_back(Road(&Intersections[40], &Intersections[46])); // Road 58
-    Roads.push_back(Road(&Intersections[41], &Intersections[47])); // Road 59
-    Roads.push_back(Road(&Intersections[42], &Intersections[43])); // Road 60
-    Roads.push_back(Road(&Intersections[44], &Intersections[45])); // Road 61
-    Roads.push_back(Road(&Intersections[46], &Intersections[47])); // Road 62
-    Roads.push_back(Road(&Intersections[43], &Intersections[48])); // Road 63
-    Roads.push_back(Road(&Intersections[44], &Intersections[49])); // Road 64
-    Roads.push_back(Road(&Intersections[45], &Intersections[50])); // Road 65
-    Roads.push_back(Road(&Intersections[46], &Intersections[51])); // Road 66
-    Roads.push_back(Road(&Intersections[48], &Intersections[49])); // Road 67
-    Roads.push_back(Road(&Intersections[50], &Intersections[51])); // Road 68
-    Roads.push_back(Road(&Intersections[49], &Intersections[52])); // Road 69
-    Roads.push_back(Road(&Intersections[50], &Intersections[53])); // Road 70
+	int number = 0;
+	Roads.push_back(Road(&Intersections[0], &Intersections[1], number++)); // Road 0
+    Roads.push_back(Road(&Intersections[0], &Intersections[3], number++)); // Road 1
+    Roads.push_back(Road(&Intersections[1], &Intersections[4], number++)); // Road 2
+    Roads.push_back(Road(&Intersections[2], &Intersections[3], number++)); // Road 3
+    Roads.push_back(Road(&Intersections[4], &Intersections[5], number++)); // Road 4
+    Roads.push_back(Road(&Intersections[2], &Intersections[7], number++)); // Road 5
+    Roads.push_back(Road(&Intersections[3], &Intersections[8], number++)); // Road 6
+    Roads.push_back(Road(&Intersections[4], &Intersections[9], number++)); // Road 7
+    Roads.push_back(Road(&Intersections[5], &Intersections[10], number++)); // Road 8
+    Roads.push_back(Road(&Intersections[6], &Intersections[7], number++)); // Road 9
+    Roads.push_back(Road(&Intersections[8], &Intersections[9], number++)); // Road 10
+    Roads.push_back(Road(&Intersections[10], &Intersections[11], number++)); // Road 11
+    Roads.push_back(Road(&Intersections[6], &Intersections[12], number++)); // Road 12
+    Roads.push_back(Road(&Intersections[7], &Intersections[13], number++)); // Road 13
+    Roads.push_back(Road(&Intersections[8], &Intersections[14], number++)); // Road 14
+    Roads.push_back(Road(&Intersections[9], &Intersections[15], number++)); // Road 15
+    Roads.push_back(Road(&Intersections[10], &Intersections[16], number++)); // Road 16
+    Roads.push_back(Road(&Intersections[11], &Intersections[17], number++)); // Road 17
+    Roads.push_back(Road(&Intersections[13], &Intersections[14], number++)); // Road 18
+    Roads.push_back(Road(&Intersections[15], &Intersections[16], number++)); // Road 19
+    Roads.push_back(Road(&Intersections[12], &Intersections[18], number++)); // Road 20
+    Roads.push_back(Road(&Intersections[13], &Intersections[19], number++)); // Road 21
+    Roads.push_back(Road(&Intersections[14], &Intersections[20], number++)); // Road 22
+    Roads.push_back(Road(&Intersections[15], &Intersections[21], number++)); // Road 23
+    Roads.push_back(Road(&Intersections[16], &Intersections[22], number++)); // Road 24
+    Roads.push_back(Road(&Intersections[17], &Intersections[23], number++)); // Road 25
+    Roads.push_back(Road(&Intersections[18], &Intersections[19], number++)); // Road 26
+    Roads.push_back(Road(&Intersections[20], &Intersections[21], number++)); // Road 27
+    Roads.push_back(Road(&Intersections[22], &Intersections[23], number++)); // Road 28
+    Roads.push_back(Road(&Intersections[18], &Intersections[24], number++)); // Road 29
+    Roads.push_back(Road(&Intersections[19], &Intersections[25], number++)); // Road 30
+    Roads.push_back(Road(&Intersections[20], &Intersections[26], number++)); // Road 31
+    Roads.push_back(Road(&Intersections[21], &Intersections[27], number++)); // Road 32
+    Roads.push_back(Road(&Intersections[22], &Intersections[28], number++)); // Road 33
+    Roads.push_back(Road(&Intersections[23], &Intersections[29], number++)); // Road 34
+    Roads.push_back(Road(&Intersections[25], &Intersections[26], number++)); // Road 35
+    Roads.push_back(Road(&Intersections[27], &Intersections[28], number++)); // Road 36
+    Roads.push_back(Road(&Intersections[24], &Intersections[30], number++)); // Road 37
+    Roads.push_back(Road(&Intersections[25], &Intersections[31], number++)); // Road 38
+    Roads.push_back(Road(&Intersections[26], &Intersections[32], number++)); // Road 39
+    Roads.push_back(Road(&Intersections[27], &Intersections[33], number++)); // Road 40
+    Roads.push_back(Road(&Intersections[28], &Intersections[34], number++)); // Road 41
+    Roads.push_back(Road(&Intersections[29], &Intersections[35], number++)); // Road 42
+    Roads.push_back(Road(&Intersections[30], &Intersections[31], number++)); // Road 43
+    Roads.push_back(Road(&Intersections[32], &Intersections[33], number++)); // Road 44
+    Roads.push_back(Road(&Intersections[34], &Intersections[35], number++)); // Road 45
+    Roads.push_back(Road(&Intersections[30], &Intersections[36], number++)); // Road 46
+    Roads.push_back(Road(&Intersections[31], &Intersections[37], number++)); // Road 47
+    Roads.push_back(Road(&Intersections[32], &Intersections[38], number++)); // Road 48
+    Roads.push_back(Road(&Intersections[33], &Intersections[39], number++)); // Road 49
+    Roads.push_back(Road(&Intersections[34], &Intersections[40], number++)); // Road 50
+    Roads.push_back(Road(&Intersections[35], &Intersections[41], number++)); // Road 51
+    Roads.push_back(Road(&Intersections[37], &Intersections[38], number++)); // Road 52
+    Roads.push_back(Road(&Intersections[39], &Intersections[40], number++)); // Road 53
+    Roads.push_back(Road(&Intersections[36], &Intersections[42], number++)); // Road 54
+    Roads.push_back(Road(&Intersections[37], &Intersections[43], number++)); // Road 55
+    Roads.push_back(Road(&Intersections[38], &Intersections[44], number++)); // Road 56
+    Roads.push_back(Road(&Intersections[39], &Intersections[45], number++)); // Road 57
+    Roads.push_back(Road(&Intersections[40], &Intersections[46], number++)); // Road 58
+    Roads.push_back(Road(&Intersections[41], &Intersections[47], number++)); // Road 59
+    Roads.push_back(Road(&Intersections[42], &Intersections[43], number++)); // Road 60
+    Roads.push_back(Road(&Intersections[44], &Intersections[45], number++)); // Road 61
+    Roads.push_back(Road(&Intersections[46], &Intersections[47], number++)); // Road 62
+    Roads.push_back(Road(&Intersections[43], &Intersections[48], number++)); // Road 63
+    Roads.push_back(Road(&Intersections[44], &Intersections[49], number++)); // Road 64
+    Roads.push_back(Road(&Intersections[45], &Intersections[50], number++)); // Road 65
+    Roads.push_back(Road(&Intersections[46], &Intersections[51], number++)); // Road 66
+    Roads.push_back(Road(&Intersections[48], &Intersections[49], number++)); // Road 67
+    Roads.push_back(Road(&Intersections[50], &Intersections[51], number++)); // Road 68
+    Roads.push_back(Road(&Intersections[49], &Intersections[52], number++)); // Road 69
+    Roads.push_back(Road(&Intersections[50], &Intersections[53], number++)); // Road 70
 }
 
 

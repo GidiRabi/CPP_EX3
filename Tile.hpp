@@ -1,8 +1,11 @@
-// Tile.hpp
+#ifndef TILE_HPP
+#define TILE_HPP
+
 #include <string>
 
 namespace ariel {
-class Player;
+
+class Player; // Forward declaration
 
 class Tile {
 public:
@@ -28,12 +31,15 @@ public:
     const std::string& getName() const;
     Construction getConstruction() const;
     bool hasNumberToken() const;
- 
+
 private:
     std::string name;
     Resource resource;
     int token;
     Construction construction;
-    Player* owner;  
+    Player* owner;
 };
-}
+
+} // namespace ariel
+
+#endif // TILE_HPP
