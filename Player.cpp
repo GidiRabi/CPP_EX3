@@ -7,17 +7,43 @@ using namespace std;
 using namespace ariel;
 
 ariel::Player::Player(const std::string& name) 
-    : name(name), isTurn(false), points(2) , startingSettlements(2), roads(2) {
-    // Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
+	: name(name), isTurn(false), points(2) , startingSettlements(2), roads(2) {
+	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
-    // Initialize the resources map with 0 for each resource type
+	// Initialize the resources map with 0 for each resource type
 	for (int i = static_cast<int>(Tile::Resource::BRICK); i <= static_cast<int>(Tile::Resource::DESERT); ++i) {
-        resources[static_cast<Tile::Resource>(i)] = 0;
-    }
+	    resources[static_cast<Tile::Resource>(i)] = 0;
+	}
 }
 
-void placeSettelemnt(const std::vector<int>& placesNum, Board& board) {
-	
+void Player::placeSettelemnt(const std::vector<int>& placesNum, Board& board) {
+    for (int placeNum : placesNum) {
+        // Check if the settlement is already owned
+        Dot& settlement = board.Intersections[placeNum];
+        if (settlement.getOwner() != nullptr) {
+            std::cout << "This settlement is already owned by another player." << std::endl;
+            continue;
+        }
+
+        // Check neighboring settlements
+        bool neighborOwned = false;
+        for (Road* road : settlement.getConnectedRoads()) {
+            Dot* neighbor = (road->getDot1() == &settlement) ? road->getDot2() : road->getDot1();
+            if (neighbor->getOwner() != nullptr) {
+                neighborOwned = true;
+                break;
+            }
+        }
+
+        if (neighborOwned) {
+            std::cout << "Cannot place settlement here. Neighboring settlement already owned by another player." << std::endl;
+            continue;
+        }
+
+        // Place the settlement
+        settlement.buildSettlement(this);
+        std::cout << "Settlement placed successfully at position " << placeNum << "." << std::endl;
+    }
 }
 
 void placeRoad(const std::vector<int>& placesNum, Board& board) {

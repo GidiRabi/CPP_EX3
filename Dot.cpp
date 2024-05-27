@@ -46,6 +46,16 @@ namespace ariel {
 
 	std::vector<Road*> Dot::getConnectedRoads() const {
 		return connectedRoads;
+	}
+
+	void Dot::addNeighbors(const std::vector<Dot*>& neighbors) {
+		for (Dot* neighbor : neighbors) {
+			this->neighbors.push_back(neighbor);
 		}
+	}
+
+	std::vector<Dot*> Dot::getNeighbors() const {
+		return neighbors;
+	}
 			
 }

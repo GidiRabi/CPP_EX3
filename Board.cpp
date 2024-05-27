@@ -92,7 +92,63 @@ void Board::createIntersections() {
     Intersections.push_back(Dot({tiles[17], tiles[18]}, number++)); // Dot 50
     Intersections.push_back(Dot({tiles[17]}, number++)); // Dot 51
     Intersections.push_back(Dot({tiles[18]}, number++)); // Dot 52
-	Intersections.push_back(Dot({tiles[18]}, number++)); // Dot 53
+	Intersections.push_back(Dot({tiles[18]}, number)); // Dot 53
+
+
+	Intersections[0].addNeighbors({&Intersections[1], &Intersections[3]});
+    Intersections[1].addNeighbors({&Intersections[0], &Intersections[4]});
+    Intersections[2].addNeighbors({&Intersections[3], &Intersections[7]});
+    Intersections[3].addNeighbors({&Intersections[0], &Intersections[2], &Intersections[8]});
+    Intersections[4].addNeighbors({&Intersections[1], &Intersections[5], &Intersections[9]});
+    Intersections[5].addNeighbors({&Intersections[4], &Intersections[10]});
+    Intersections[6].addNeighbors({&Intersections[7], &Intersections[12]});
+    Intersections[7].addNeighbors({&Intersections[2], &Intersections[6], &Intersections[13]});
+    Intersections[8].addNeighbors({&Intersections[3], &Intersections[9], &Intersections[14]});
+    Intersections[9].addNeighbors({&Intersections[4], &Intersections[8], &Intersections[15]});
+    Intersections[10].addNeighbors({&Intersections[5], &Intersections[11], &Intersections[16]});
+    Intersections[11].addNeighbors({&Intersections[10], &Intersections[17]});
+    Intersections[12].addNeighbors({&Intersections[6], &Intersections[18]});
+    Intersections[13].addNeighbors({&Intersections[7], &Intersections[14], &Intersections[19]});
+    Intersections[14].addNeighbors({&Intersections[8], &Intersections[13], &Intersections[20]});
+    Intersections[15].addNeighbors({&Intersections[9], &Intersections[16], &Intersections[21]});
+    Intersections[16].addNeighbors({&Intersections[10], &Intersections[15], &Intersections[22]});
+    Intersections[17].addNeighbors({&Intersections[11], &Intersections[23]});
+    Intersections[18].addNeighbors({&Intersections[12], &Intersections[19], &Intersections[24]});
+    Intersections[19].addNeighbors({&Intersections[13], &Intersections[18], &Intersections[25]});
+    Intersections[20].addNeighbors({&Intersections[14], &Intersections[21], &Intersections[26]});
+    Intersections[21].addNeighbors({&Intersections[15], &Intersections[20], &Intersections[27]});
+    Intersections[22].addNeighbors({&Intersections[16], &Intersections[23], &Intersections[28]});
+    Intersections[23].addNeighbors({&Intersections[17], &Intersections[22], &Intersections[29]});
+    Intersections[24].addNeighbors({&Intersections[18], &Intersections[30]});
+    Intersections[25].addNeighbors({&Intersections[19], &Intersections[26], &Intersections[31]});
+    Intersections[26].addNeighbors({&Intersections[20], &Intersections[25], &Intersections[32]});
+    Intersections[27].addNeighbors({&Intersections[21], &Intersections[28], &Intersections[33]});
+    Intersections[28].addNeighbors({&Intersections[22], &Intersections[27], &Intersections[34]});
+    Intersections[29].addNeighbors({&Intersections[23], &Intersections[35]});
+    Intersections[30].addNeighbors({&Intersections[24], &Intersections[31], &Intersections[36]});
+    Intersections[31].addNeighbors({&Intersections[25], &Intersections[30], &Intersections[37]});
+    Intersections[32].addNeighbors({&Intersections[26], &Intersections[33], &Intersections[38]});
+    Intersections[33].addNeighbors({&Intersections[27], &Intersections[32], &Intersections[39]});
+    Intersections[34].addNeighbors({&Intersections[28], &Intersections[35], &Intersections[40]});
+    Intersections[35].addNeighbors({&Intersections[29], &Intersections[34], &Intersections[41]});
+    Intersections[36].addNeighbors({&Intersections[30], &Intersections[42]});
+    Intersections[37].addNeighbors({&Intersections[31], &Intersections[38], &Intersections[43]});
+    Intersections[38].addNeighbors({&Intersections[32], &Intersections[37], &Intersections[44]});
+    Intersections[39].addNeighbors({&Intersections[33], &Intersections[40], &Intersections[45]});
+    Intersections[40].addNeighbors({&Intersections[34], &Intersections[39], &Intersections[46]});
+    Intersections[41].addNeighbors({&Intersections[35], &Intersections[47]});
+    Intersections[42].addNeighbors({&Intersections[36], &Intersections[43]});
+    Intersections[43].addNeighbors({&Intersections[37], &Intersections[42], &Intersections[48]});
+    Intersections[44].addNeighbors({&Intersections[38], &Intersections[45], &Intersections[49]});
+    Intersections[45].addNeighbors({&Intersections[39], &Intersections[44], &Intersections[50]});
+    Intersections[46].addNeighbors({&Intersections[40], &Intersections[47], &Intersections[51]});
+    Intersections[47].addNeighbors({&Intersections[41], &Intersections[46]});
+    Intersections[48].addNeighbors({&Intersections[43], &Intersections[49]});
+    Intersections[49].addNeighbors({&Intersections[44], &Intersections[48], &Intersections[52]});
+    Intersections[50].addNeighbors({&Intersections[45], &Intersections[51], &Intersections[52]});
+    Intersections[51].addNeighbors({&Intersections[46], &Intersections[50]});
+    Intersections[52].addNeighbors({&Intersections[49], &Intersections[53]});
+    Intersections[53].addNeighbors({&Intersections[50], &Intersections[52]});
 
 }
 
@@ -169,6 +225,8 @@ void Board::createRoads() {
     Roads.push_back(Road(&Intersections[50], &Intersections[51], number++)); // Road 68
     Roads.push_back(Road(&Intersections[49], &Intersections[52], number++)); // Road 69
     Roads.push_back(Road(&Intersections[50], &Intersections[53], number++)); // Road 70
+    Roads.push_back(Road(&Intersections[52], &Intersections[53], number++)); // Road 71
+
 }
 
 

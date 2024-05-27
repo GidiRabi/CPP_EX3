@@ -11,7 +11,6 @@ using namespace ariel;
 
 int main()
 {
-
     Player p1("Amit");
     Player p2("Yossi");
     Player p3("Dana");
@@ -40,7 +39,6 @@ int main()
     {
         cout << e.what() << endl;
     }
-    vector<string> places = {"Forest", "Pasture Land"};
     vector<int> placesNum = {5, 9};
     p2.placeSettelemnt(placesNum, board);
     p2.placeRoad(placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.

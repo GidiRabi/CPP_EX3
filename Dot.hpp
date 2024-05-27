@@ -14,14 +14,16 @@ namespace ariel {
         Player* getOwner() const;
 		std::vector<Tile> getNeighborTiles() const;
 		void getBuildingType();
-		std::vector<Road*> getConnectedRoads() const; 
-
+		std::vector<Road*> getConnectedRoads() const; // Check if needed
+    void addNeighbors(const std::vector<Dot*>& neighbors);
+    	std::vector<Dot*> getNeighbors() const;
     private:
         std::vector<Tile> neighborTiles;
         Player* owner = nullptr;
 		int number;
         int buildingType = 0;  // 0 = no building, 1 = settlement, 2 = city
-		std::vector<Road*> connectedRoads;
+		std::vector<Road*> connectedRoads; // Check if needed
+		std::vector<Dot*> neighbors;  // List of neighboring dots
     };
 }
 
