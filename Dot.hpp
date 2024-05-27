@@ -16,6 +16,7 @@ namespace ariel {
 		int getBuildingType();
     	void addNeighbors(const std::vector<Dot*>& neighbors);
     	std::vector<Dot*> getNeighbors() const;
+		int getNumber() const { return number; }
     private:
         std::vector<Tile> neighborTiles;
         Player* owner = nullptr;

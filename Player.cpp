@@ -7,7 +7,7 @@ using namespace std;
 using namespace ariel;
 
 ariel::Player::Player(const std::string& name) 
-	: name(name), isTurn(false), points(2) , startingSettlements(2), roads(2), startingRoads(2) {
+	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), roads(2) {
 	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
 	// Initialize the resources map with 0 for each resource type
@@ -48,7 +48,6 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
 	// If this is the the first 2 settlements, no resources are required
 	if(startingSettlements <= 0){
 		// Check if the player has enough resources
-		bool hasEnoughResources = true;
 		for (const auto& [resource, amount] : requiredResources) {
 			if (this->resources[resource] < amount) {
 				std::cout << "Not enough resources to place a settlement." << std::endl;

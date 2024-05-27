@@ -10,6 +10,9 @@
 
 namespace ariel{
 
+class Board; // Forward declaration
+class Road;  // Forward declaration
+
 struct TradeItem {
     std::string type; // "resource"
     std::string name; // Name of the resource
@@ -28,7 +31,7 @@ public:
     int getPoints();
 	void printPoints();
 	void printResources();
-	string getName();
+	std::string getName();
 	bool getTurn();
     void setTurn(bool turn) {
         isTurn = turn;
@@ -44,7 +47,7 @@ private:
     bool isTurn;
     int startingSettlements;
 	int startingRoads;
-    map<std::string, int> developmentCards = {
+    std::map<std::string, int> developmentCards = {
         {"Knight", 0},
         {"Victory Point", 0},
         {"Road Building", 0},

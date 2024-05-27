@@ -1,6 +1,8 @@
 // Board.cpp
 #include "Board.hpp"
 #include "Player.hpp"
+#include "Dot.hpp"
+#include "Road.hpp"
 #include <algorithm>
 #include <random>
 
@@ -294,4 +296,6 @@ std::map<std::string, int>& Board::getDevelopmentCards() {
 
 void Board::setRobberLocation(int location) {
 	robberLocation = location;
+}
+
 }

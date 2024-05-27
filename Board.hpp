@@ -3,6 +3,7 @@
 #define BOARD_HPP
 
 #include "Tile.hpp"
+#include "Player.hpp"
 #include "Dot.hpp"
 #include "Road.hpp"
 #include <vector>
@@ -12,6 +13,7 @@
 using namespace std;
 
 namespace ariel {
+
 class Board {
 
 public:
