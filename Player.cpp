@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 using namespace std;
-using namespace ariel;
+namespace ariel{
 
 ariel::Player::Player(const std::string& name) 
 	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), roads(2) {
@@ -18,7 +18,7 @@ ariel::Player::Player(const std::string& name)
 
 void Player::placeSettelemnt(int placeNum, Board& board) {
 
-	if(this->isTurn == false) {
+	if(this->isTurn != true) {
 		std::cout << "It is not your turn." << std::endl;
 		return;
 	}
@@ -178,7 +178,7 @@ void Player::placeRoad(int placeNum, Board& board) {
 	startingRoads--;
 
     // Set the owner of the road
-    roadToBuild.BuildRoard(this); 
+    roadToBuild.buildRoad(this); 
 	
     std::cout << "Road built successfully at position " << placeNum << "." << std::endl;
 }
@@ -325,6 +325,12 @@ string Player::getName() {
 	return name;
 }
 
-bool Player::getTurn() {
+bool Player::getTurn() const{
 	return isTurn;
+}
+
+void Player::setTurn(bool turn) {
+    isTurn = turn;
+}
+
 }

@@ -2,6 +2,7 @@
 #ifndef DOT_HPP
 #define DOT_HPP
 
+#include <vector>
 #include "Tile.hpp"
 #include "Player.hpp"
 
@@ -17,9 +18,10 @@ namespace ariel {
     	void addNeighbors(const std::vector<Dot*>& neighbors);
     	std::vector<Dot*> getNeighbors() const;
 		int getNumber() const { return number; }
+
     private:
         std::vector<Tile> neighborTiles;
-        Player* owner = nullptr;
+        Player* owner;
 		int number;
         int buildingType = 0;  // 0 = no building, 1 = settlement, 2 = city
 		std::vector<Dot*> neighbors;  // List of neighboring dots

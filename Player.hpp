@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "Board.hpp"
 #include "Tile.hpp"
+#include "Board.hpp"
 
 namespace ariel{
 
@@ -32,10 +32,8 @@ public:
 	void printPoints();
 	void printResources();
 	std::string getName();
-	bool getTurn();
-    void setTurn(bool turn) {
-        isTurn = turn;
-    }
+	bool getTurn() const;
+    void setTurn(bool turn);
     std::map<Tile::Resource, int> getResources() {
         return resources;
     }

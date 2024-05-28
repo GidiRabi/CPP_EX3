@@ -2,8 +2,8 @@
 #ifndef ROAD_HPP
 #define ROAD_HPP
 
-#include "Player.hpp"
 #include "Dot.hpp"
+#include "Player.hpp"
 #include <iostream>
 
 namespace ariel {
@@ -14,7 +14,7 @@ namespace ariel {
     public:
 		Road(Dot* dot1, Dot* dot2, int num);
 
-		void BuildRoard(Player* player);
+		void buildRoad(Player* player);
         Player* getOwner() const;
 		Dot* getDot1() const;
 		Dot* getDot2() const;

@@ -5,7 +5,7 @@
 
 namespace ariel {
 
-    Dot::Dot(const std::vector<Tile>& neighborTiles, int num) : neighborTiles(neighborTiles), number(num) {}
+    Dot::Dot(const std::vector<Tile>& neighborTiles, int num) : neighborTiles(neighborTiles), owner(nullptr), number(num) {}
 
     void Dot::buildSettlement(Player* player) {
         if (buildingType == 0) {

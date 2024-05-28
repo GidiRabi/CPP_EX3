@@ -2,6 +2,7 @@
 #include "Board.hpp"
 #include "Player.hpp"
 #include "Dot.hpp"
+#include "Tile.hpp"
 #include "Road.hpp"
 #include <algorithm>
 #include <random>

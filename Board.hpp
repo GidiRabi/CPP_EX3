@@ -1,38 +1,41 @@
-//Board.hpp
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
 #include "Tile.hpp"
-#include "Player.hpp"
 #include "Dot.hpp"
 #include "Road.hpp"
+#include "Player.hpp"
 #include <vector>
 #include <map>
 #include <set>
+
 
 using namespace std;
 
 namespace ariel {
 
-class Board {
+class Dot;
+class Road;
+class Player;
 
+class Board {
 public:
     Board();
     void initializeBoard();
     void assignStartingResources(Dot& dot);
     void upgradeSettlementToCity(Player player, int settlementLocation);
-	vector<Dot>& getIntersections();  // Getter for Intersections
+    vector<Dot>& getIntersections();  // Getter for Intersections
     vector<Tile>& getTiles();         // Getter for tiles
     vector<Road>& getRoads();         // Getter for Roads
-	std::map<std::string, int>& getDevelopmentCards();
-	void setRobberLocation(int location);
-	void assignResources(int roll);
+    std::map<std::string, int>& getDevelopmentCards();
+    void setRobberLocation(int location);
+    void assignResources(int roll);
 
 private:
     vector<Tile> tiles;  // Vector to keep track of tiles in order
     vector<Dot> Intersections;  // Map to keep track of settlements and cities
     vector<Road> Roads;  // Vector to keep track of roads in order
-	int robberLocation;
+    int robberLocation;
     void createTiles();
     void createIntersections();
     void createRoads();
@@ -44,6 +47,7 @@ private:
         {"Monopoly", 2}
     };
 };
-}
 
-#endif
+} // namespace ariel
+
+#endif // BOARD_HPP

@@ -4,7 +4,7 @@
 namespace ariel {
 	Road::Road(Dot* dot1, Dot* dot2, int num) : dot1(dot1), dot2(dot2), number(num){}
 
-    void Road::BuildRoard(Player* player) {
+    void Road::buildRoad(Player* player) {
         if (owner == nullptr) {
             owner = player;
         }

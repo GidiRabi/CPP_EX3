@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-using namespace ariel;
+namespace ariel{
 
 Catan::Catan(Player p1, Player p2, Player p3) : player1(p1), player2(p2), player3(p3) {
 
@@ -23,24 +23,28 @@ void Catan::ChooseStartingPlayer() {
 
 void Catan::endTurn(){
 
+	std::cout << "Player " << currentPlayerIndex << " has ended his turn." << std::endl;
+
 	//iterate to find whos turn is at the moment (searching whos true)
-	if (player1.getTurn() == true) {
+	if (player1.getTurn()) {
 		player1.setTurn(false);
 		player2.setTurn(true);
+		player3.setTurn(false);
 		currentPlayerIndex = 2;
 	}
-	else if (player2.getTurn() == true) {
+	else if (player2.getTurn()) {
+		player1.setTurn(false);
 		player2.setTurn(false);
 		player3.setTurn(true);
 		currentPlayerIndex = 3;
 	}
-	else if (player3.getTurn() == true) {
-		player3.setTurn(false);
+	else if (player3.getTurn()) {
 		player1.setTurn(true);
+		player2.setTurn(false);
+		player3.setTurn(false);
 		currentPlayerIndex = 1;
 	}
 
-	std::cout << "Player " << currentPlayerIndex << " has ended his turn." << std::endl;
     std::cout << "It's player " << currentPlayerIndex << " turn now." << std::endl;
 }
 
@@ -64,17 +68,19 @@ void Catan::printWinner() {
 	}
 
 	//if no one has over 10 points, print None
-	if (maxPoints < 10) {
+	if (maxPoints >= 10) {
+		if (player1.getPoints() == maxPoints) {
+			cout << player1.getName() << " is the winner!" << endl;
+		}
+		if (player2.getPoints() == maxPoints) {
+			cout << player2.getName() << " is the winner!" << endl;
+		}
+		if (player3.getPoints() == maxPoints) {
+			cout << player3.getName() << " is the winner!" << endl;
+		}
+	}else{
 		cout << "None" << endl;
 	}
+}
 
-	if (player1.getPoints() == maxPoints) {
-		cout << player1.getName() << " is the winner!" << endl;
-	}
-	if (player2.getPoints() == maxPoints) {
-		cout << player2.getName() << " is the winner!" << endl;
-	}
-	if (player3.getPoints() == maxPoints) {
-		cout << player3.getName() << " is the winner!" << endl;
-	}
 }

@@ -1,31 +1,19 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Werror -pedantic
 
-SRC = Board.cpp Tile.cpp Dot.cpp Road.cpp Player.cpp Main.cpp
+SRC = Board.cpp Tile.cpp Dot.cpp Road.cpp Player.cpp Catan.cpp Main.cpp
 OBJ = $(SRC:.cpp=.o)
+EXEC = catan
 
-all: catan
+all: $(EXEC)
 
-catan: $(OBJ)
-	$(CXX) $(CXXFLAGS) -o catan $(OBJ)
+$(EXEC): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-Board.o: Board.cpp Board.hpp Tile.hpp Dot.hpp Road.hpp Player.hpp
-	$(CXX) $(CXXFLAGS) -c Board.cpp
-
-Tile.o: Tile.cpp Tile.hpp
-	$(CXX) $(CXXFLAGS) -c Tile.cpp
-
-Dot.o: Dot.cpp Dot.hpp Player.hpp Tile.hpp Road.hpp
-	$(CXX) $(CXXFLAGS) -c Dot.cpp
-
-Road.o: Road.cpp Road.hpp Dot.hpp Player.hpp
-	$(CXX) $(CXXFLAGS) -c Road.cpp
-
-Player.o: Player.cpp Player.hpp Board.hpp Tile.hpp Dot.hpp Road.hpp
-	$(CXX) $(CXXFLAGS) -c Player.cpp
-
-Main.o: Main.cpp Board.hpp Player.hpp
-	$(CXX) $(CXXFLAGS) -c Main.cpp
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm -f *.o catan
+	rm -f $(OBJ) $(EXEC)
+
+.PHONY: all clean
