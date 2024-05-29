@@ -16,12 +16,13 @@ int main()
     Player p3("Ido");
     Catan catan(p1, p2, p3);
 
-
     cout << "Choosing the starting player..." << endl;
     catan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Gidi.
 
     cout << "Getting the game board..." << endl;
-    Board board = catan.getBoard(); // get the board of the game.
+    Board& board = catan.getBoard(); // get the board of the game.
+
+	// print player1 isTurn variable (boolean print true or false)
 
     cout << "Placing settlements and roads for player 1..." << endl;
     int placesNum = 5;
@@ -50,6 +51,7 @@ int main()
     placesNum = 5;
     p2.placeSettelemnt(placesNum, board);
     p2.placeRoad(placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
+	catan.endTurn(); // p2 ends his turn.
 
     cout << "Placing settlements and roads for player 3..." << endl;
     placesNum = 8;
@@ -58,6 +60,7 @@ int main()
     placesNum = 3;
     p3.placeSettelemnt(placesNum, board);
     p3.placeRoad(placesNum, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
+	catan.endTurn(); // p3 ends his turn.
 
     // p1 has wood, bricks, and wheat, p2 has wood, ore, and wool, p3 has ore, wool, wheat.
     cout << "Player 1 rolls the dice..." << endl;
@@ -88,6 +91,7 @@ int main()
     p1.rollDice(board);                      // Lets say it's print 6. Then, p1 gets bricks from the hills.
     cout << "Player 1 trades with player 2..." << endl;
     p1.trade(p2, "wood", "brick", 1, 1);     // p1 trades 1 wood for 1 brick with p2.
+
     catan.endTurn();                         // p1 ends his turn.
 
     cout << "Player 2 rolls the dice..." << endl;

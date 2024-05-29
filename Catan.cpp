@@ -6,7 +6,8 @@
 using namespace std;
 namespace ariel{
 
-Catan::Catan(Player p1, Player p2, Player p3) : player1(p1), player2(p2), player3(p3) {
+Catan::Catan(Player& p1, Player& p2, Player& p3) 
+	: player1(p1), player2(p2), player3(p3) {
 
 	//initialize the board
 	board = Board();
@@ -15,8 +16,6 @@ Catan::Catan(Player p1, Player p2, Player p3) : player1(p1), player2(p2), player
 void Catan::ChooseStartingPlayer() {
     // Player1 will be the starting player
     player1.setTurn(true);
-    player2.setTurn(false);
-    player3.setTurn(false);
 
 	currentPlayerIndex = 1;
 }
@@ -29,18 +28,15 @@ void Catan::endTurn(){
 	if (player1.getTurn()) {
 		player1.setTurn(false);
 		player2.setTurn(true);
-		player3.setTurn(false);
 		currentPlayerIndex = 2;
 	}
 	else if (player2.getTurn()) {
-		player1.setTurn(false);
 		player2.setTurn(false);
 		player3.setTurn(true);
 		currentPlayerIndex = 3;
 	}
 	else if (player3.getTurn()) {
 		player1.setTurn(true);
-		player2.setTurn(false);
 		player3.setTurn(false);
 		currentPlayerIndex = 1;
 	}
@@ -48,9 +44,11 @@ void Catan::endTurn(){
     std::cout << "It's player " << currentPlayerIndex << " turn now." << std::endl;
 }
 
-ariel::Board Catan::getBoard() {
-    return this->board;
+ariel::Board& Catan::getBoard() {
+    return board;
 }
+
+
 
 void Catan::printWinner() {
     // go over all players and print the winner (the player with the most points)

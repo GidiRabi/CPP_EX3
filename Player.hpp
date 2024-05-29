@@ -37,6 +37,7 @@ public:
     std::map<Tile::Resource, int> getResources() {
         return resources;
     }
+	void cheatResources();
 
 private:
     std::string name;

@@ -16,9 +16,9 @@ ariel::Player::Player(const std::string& name)
 	}
 }
 
-void Player::placeSettelemnt(int placeNum, Board& board) {
+void Player::placeSettelemnt(int placeNum, Board& board) {	
 
-	if(this->isTurn != true) {
+	if(!this->isTurn) {
 		std::cout << "It is not your turn." << std::endl;
 		return;
 	}
@@ -59,6 +59,7 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
 		for (const auto& [resource, amount] : requiredResources) {
 			this->resources[resource] -= amount;
 		}
+		points++;
 	}
 
     // Place the settlement
@@ -106,6 +107,7 @@ void Player::upgradeToCity(int placeNum, Board& board) {
         this->resources[resource] -= amount;
     }
 
+	points++;
     // Upgrade the settlement to a city
     settlement.upgradeToCity();
     std::cout << "Settlement upgraded to a city at position " << placeNum << "." << std::endl;
@@ -305,7 +307,10 @@ void Player::buyDevelopmentCard(Board& board) {
         }
     }
     std::string selectedCard = cardTypes[std::rand() % cardTypes.size()];
-
+	
+	if(selectedCard != "Knight"){
+		points++;
+	}
     // Add the card to the player's inventory and update the available cards on the board
     this->developmentCards[selectedCard]++;
     availableCards[selectedCard]--;
@@ -333,4 +338,9 @@ void Player::setTurn(bool turn) {
     isTurn = turn;
 }
 
+void Player::cheatResources() {
+	for (int i = static_cast<int>(Tile::Resource::BRICK); i <= static_cast<int>(Tile::Resource::DESERT); ++i) {
+		resources[static_cast<Tile::Resource>(i)] = 500;
+	}
+}
 }

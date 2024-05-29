@@ -9,15 +9,15 @@ namespace ariel{
 
 class Catan {
 public:
-    Catan(Player p1, Player p2, Player p3);
+    Catan(Player& p1, Player& p2, Player& p3);
     void ChooseStartingPlayer();
-    Board getBoard();
+    Board& getBoard();
     void printWinner();
 	void endTurn();
 private:
-    Player player1;
-    Player player2;
-    Player player3;
+    Player& player1;
+    Player& player2;
+    Player& player3;
     Board board;
 	int currentPlayerIndex;
 };
