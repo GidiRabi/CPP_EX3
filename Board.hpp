@@ -30,15 +30,16 @@ public:
     std::map<std::string, int>& getDevelopmentCards();
     void setRobberLocation(int location);
     void assignResources(int roll);
+    std::vector<Player*>& getPlayers();    // Getter for players
+    void setPlayers(const std::vector<Player*>& newPlayers);  // Setter for players
 
 private:
     vector<Tile> tiles;  // Vector to keep track of tiles in order
     vector<Dot> Intersections;  // Map to keep track of settlements and cities
     vector<Road> Roads;  // Vector to keep track of roads in order
-	Player& player1;
-    Player& player2;
-    Player& player3;
     int robberLocation;
+    std::vector<Player*> players;  // List of players
+
     void createTiles();
     void createIntersections();
     void createRoads();

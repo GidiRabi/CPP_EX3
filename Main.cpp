@@ -16,9 +16,6 @@ int main()
     Player p3("Ido");
     Catan catan(p1, p2, p3);
 
-    cout << "Choosing the starting player..." << endl;
-    catan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Gidi.
-
     cout << "Getting the game board..." << endl;
     Board& board = catan.getBoard(); // get the board of the game.
 
@@ -122,6 +119,8 @@ int main()
 
     cout << "Printing the winner..." << endl;
     catan.printWinner(); // Should print None because no player reached 10 points.
+
+    p1.printStats();
 
     return 0;
 }

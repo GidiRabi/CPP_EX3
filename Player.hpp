@@ -25,6 +25,7 @@ public:
     void placeSettelemnt(int placesNum, Board& board);
 	void upgradeToCity(int placesNum, Board& board);
     void placeRoad(int placesNum, Board& board);
+    void checkLongestRoad(Board& board);
     void rollDice(Board& board);
     void trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount);
     void buyDevelopmentCard(Board& board);
@@ -54,6 +55,7 @@ private:
     };
 	std::vector<Road*> roads;  // Vector to keep track of roads the player has built
 	bool hasThreeKnights;
+    bool hasLongestRoad;
     Tile::Resource stringToResource(const std::string& resource);
     std::string resourceToString(Tile::Resource resource) const;
 	void checkKnights();

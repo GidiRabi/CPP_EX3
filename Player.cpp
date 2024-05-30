@@ -2,14 +2,14 @@
 #include "Player.hpp"
 #include <iostream>
 #include <stdexcept>
-#include <__thread/this_thread.h>
+#include <thread>
 #include <random>
 
 using namespace std;
 namespace ariel{
 
 ariel::Player::Player(const std::string& name) 
-	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), roads(2), hasThreeKnights(false) {
+	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), roads(2), hasThreeKnights(false), hasLongestRoad(false) {
 	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
 	// Initialize the resources map with 0 for each resource type
@@ -191,9 +191,28 @@ void Player::placeRoad(int placeNum, Board& board) {
     // Set the owner of the road
     roadToBuild.buildRoad(this); 
 
+    checkLongestRoad(board);
+
     std::cout << "Road built successfully at position " << placeNum << "." << std::endl;
 }
 
+void Player::checkLongestRoad(Board& board) {
+    if (roads.size() >= 5) {
+        std::vector<Player*>& players = board.getPlayers();
+        for (Player* player : players) {
+            if (player != this && player->hasLongestRoad) {
+                player->points -= 2;
+                player->hasLongestRoad = false;
+                std::cout << player->getName() << " lost the longest road bonus." << std::endl;
+            }
+        }
+        if (!hasLongestRoad) {
+            points += 2;
+            hasLongestRoad = true;
+            std::cout << getName() << " gained the longest road bonus." << std::endl;
+        }
+    }
+}
 
 void Player::rollDice(Board& board) {
     if (!this->isTurn) {
@@ -407,12 +426,7 @@ void Player::printStats(){
 	for (const auto& [card, amount] : developmentCards) {
 		std::cout << card << ": " << amount << std::endl;
 	}
-	int count = 0;
-	std::cout << "Roads amount: ";
-	for (Road* road : roads) {
-		count++;
-	}
-	cout << count << endl;
+	std::cout << "Roads amount: " << roads.size() << std::endl;
 
 	if(hasThreeKnights){
 		std::cout << "Has biggest army" << std::endl;

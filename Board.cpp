@@ -9,7 +9,7 @@
 
 namespace ariel {
 Board::Board(Player& p1, Player& p2, Player& p3) 
-    : player1(p1), player2(p2), player3(p3), robberLocation(10) {
+    : robberLocation(10), players({&p1, &p2, &p3}){
     initializeBoard();
 }
 
@@ -294,6 +294,14 @@ std::vector<Road>& Board::getRoads() {
 
 std::map<std::string, int>& Board::getDevelopmentCards() {
     return developmentCards;
+}
+
+std::vector<Player*>& Board::getPlayers() {
+    return players;
+}
+
+void Board::setPlayers(const std::vector<Player*>& newPlayers) {
+    players = newPlayers;
 }
 
 void Board::setRobberLocation(int location) {

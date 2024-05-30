@@ -72,6 +72,20 @@
 		"system_error": "cpp",
 		"type_traits": "cpp",
 		"utility": "cpp",
-		"format": "cpp"
+		"format": "cpp",
+		"thread": "cpp",
+		"__bits": "cpp",
+		"__debug": "cpp",
+		"__errc": "cpp",
+		"__mutex_base": "cpp",
+		"__tuple": "cpp",
+		"__nullptr": "cpp",
+		"__string": "cpp",
+		"chrono": "cpp",
+		"numeric": "cpp",
+		"csignal": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"unordered_set": "cpp"
 	}
 }
