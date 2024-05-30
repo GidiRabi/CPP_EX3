@@ -30,13 +30,12 @@ public:
     void buyDevelopmentCard(Board& board);
     int getPoints();
 	void printPoints();
-	void printResources();
+	void printStats();
+	void printResources() const;
 	std::string getName();
 	bool getTurn() const;
     void setTurn(bool turn);
-    std::map<Tile::Resource, int> getResources() {
-        return resources;
-    }
+    std::map<Tile::Resource, int>& getResources();
 	void cheatResources();
 
 private:
@@ -54,7 +53,11 @@ private:
         {"Monopoly", 0}
     };
 	std::vector<Road*> roads;  // Vector to keep track of roads the player has built
+	bool hasThreeKnights;
     Tile::Resource stringToResource(const std::string& resource);
+    std::string resourceToString(Tile::Resource resource) const;
+	void checkKnights();
+
 };
 
 }

@@ -14,6 +14,7 @@ Catan::Catan(Player& p1, Player& p2, Player& p3)
 }
 
 void Catan::ChooseStartingPlayer() {
+	cout << "Player 1 starts the game! Good Luck GG HF" << endl;
     // Player1 will be the starting player
     player1.setTurn(true);
 

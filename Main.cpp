@@ -26,18 +26,18 @@ int main()
 
     cout << "Placing settlements and roads for player 1..." << endl;
     int placesNum = 5;
+    p1.placeSettelemnt(placesNum, board); 
+    p1.placeRoad(4, board);
+    placesNum = 8;
     p1.placeSettelemnt(placesNum, board);
-    p1.placeRoad(placesNum, board);
-    placesNum = 3;
-    p1.placeSettelemnt(placesNum, board);
-    p1.placeRoad(placesNum, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
+    p1.placeRoad(10, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
 
 	catan.endTurn(); // p1 ends his turn.
 
     cout << "Placing settlements and roads for player 2..." << endl;
-    placesNum = 9;
+    placesNum = 20;
     p2.placeSettelemnt(placesNum, board);
-    p2.placeRoad(placesNum, board);
+    p2.placeRoad(27, board);
     try
     {
         cout << "Player 3 tries to place a settlement in the same location as player 2..." << endl;
@@ -48,25 +48,25 @@ int main()
         cout << e.what() << endl;
     }
     cout << "Continuing to place settlements and roads for player 2..." << endl;
-    placesNum = 5;
+    placesNum = 39;
     p2.placeSettelemnt(placesNum, board);
-    p2.placeRoad(placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
+    p2.placeRoad(49, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
 	catan.endTurn(); // p2 ends his turn.
 
     cout << "Placing settlements and roads for player 3..." << endl;
-    placesNum = 8;
+    placesNum = 37;
     p3.placeSettelemnt(placesNum, board);
-    p3.placeRoad(placesNum, board);
-    placesNum = 3;
+    p3.placeRoad(52, board);
+    placesNum = 13;
     p3.placeSettelemnt(placesNum, board);
-    p3.placeRoad(placesNum, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
+    p3.placeRoad(21, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
 	catan.endTurn(); // p3 ends his turn.
 
     // p1 has wood, bricks, and wheat, p2 has wood, ore, and wool, p3 has ore, wool, wheat.
     cout << "Player 1 rolls the dice..." << endl;
     p1.rollDice(board);           // Lets say it's print 4. Then, p2 gets ore from the mountains.
     cout << "Player 1 places a road..." << endl;
-    p1.placeRoad(6, board);       // p1 continues to build a road.
+    p1.placeRoad(7, board);       // p1 continues to build a road. (if he can)
     catan.endTurn();              // p1 ends his turn.
 
     cout << "Player 2 rolls the dice..." << endl;
@@ -90,13 +90,28 @@ int main()
     cout << "Player 1 rolls the dice..." << endl;
     p1.rollDice(board);                      // Lets say it's print 6. Then, p1 gets bricks from the hills.
     cout << "Player 1 trades with player 2..." << endl;
+	p1.printResources();
+	p2.printResources();
     p1.trade(p2, "wood", "brick", 1, 1);     // p1 trades 1 wood for 1 brick with p2.
+
+
+	p1.cheatResources();
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+	p1.buyDevelopmentCard(board);
+
 
     catan.endTurn();                         // p1 ends his turn.
 
     cout << "Player 2 rolls the dice..." << endl;
     p2.rollDice(board);           // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
     cout << "Player 2 buys a development card..." << endl;
+	p2.printResources();
     p2.buyDevelopmentCard(board); // p2 buys a development card. Lets say it is a bonus points card.
     catan.endTurn();              // p2 ends his turn.
 
