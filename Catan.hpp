@@ -14,6 +14,8 @@ public:
     Board& getBoard();
     void printWinner();
 	void endTurn();
+    int getCurrentPlayer();
+    ~Catan();
 private:
     Player& player1;
     Player& player2;

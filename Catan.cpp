@@ -10,6 +10,7 @@ Catan::Catan(Player& p1, Player& p2, Player& p3)
 	: player1(p1), player2(p2), player3(p3), board(Board(p1,p2,p3)){
 
 	ChooseStartingPlayer();
+
 }
 
 void Catan::ChooseStartingPlayer() {
@@ -80,5 +81,14 @@ void Catan::printWinner() {
 		cout << "None" << endl;
 	}
 }
+
+int Catan::getCurrentPlayer() {
+	return currentPlayerIndex;
+}
+
+Catan::~Catan() {
+	
+}
+
 
 }

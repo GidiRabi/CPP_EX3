@@ -235,7 +235,16 @@ void Player::rollDice(Board& board) {
     if (rolledNumber == 7) {
         std::cout << "Since you rolled a 7. Insert a tile number to place the robber: ";
         int tileNumber;
-        std::cin >> tileNumber;
+
+        bool validTile = false;
+        while(!validTile){
+            std::cin >> tileNumber;
+            if(tileNumber < 0 || tileNumber > 18 || tileNumber == 7){
+                cout << "Invalid tile number, Please enter a number between 0 and 18 (not 7): ";
+            }else{
+                validTile = true;
+            }
+        }
         board.setRobberLocation(tileNumber);
         std::cout << "Robber placed on tile " << tileNumber << "." << std::endl;
     } else {
@@ -257,7 +266,7 @@ void Player::trade(Player& other, const std::string& give, const std::string& ta
     cout << "Does " << other.name << " agree to this trade? (Y/n): " << endl;
 	cout << other.name << " is thinking whether to accept..." << endl;
 	// Simulate a delay to make the game more interesting
-	this_thread::sleep_for(std::chrono::seconds(3));
+	this_thread::sleep_for(std::chrono::seconds(2));
 	// 50/50 chance she will accept the trade
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -435,10 +444,11 @@ void Player::printStats(){
 }
 
 void Player::cheatResources() {
+
+    cout << "Cheat activated for "  << this->name << ": Resources set to 500 each." << endl;
 	for (int i = static_cast<int>(Tile::Resource::BRICK); i <= static_cast<int>(Tile::Resource::DESERT); ++i) {
 		resources[static_cast<Tile::Resource>(i)] = 500;
 	}
 }
-
 
 }
