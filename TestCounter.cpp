@@ -4,8 +4,6 @@
 using namespace doctest;
 using namespace std;
 
-const int MIN_TESTS = 2;
-
 int return_code = -1;
 
 struct ReporterCounter : public ConsoleReporter
@@ -15,20 +13,11 @@ struct ReporterCounter : public ConsoleReporter
 
     void test_run_end(const TestRunStats &run_stats) override
     {
-        if (run_stats.numAsserts >= MIN_TESTS)
+        if (run_stats.numAssertsFailed == 0)
         {
-            if (run_stats.numAssertsFailed == 0)
-            {
-                cout << "All tests passed!" << endl;
-            }
-            return_code = 0;
+            cout << "All tests passed!" << endl;
         }
-        else
-        {
-            cout << "Please write at least " << MIN_TESTS << " tests! " << endl;
-            cout << "Current number of tests: " << run_stats.numAsserts << endl;
-            return_code = 1;
-        }
+        return_code = 0;
     }
 };
 

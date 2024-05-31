@@ -23,7 +23,6 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         std::cout << "It is not your turn." << std::endl;
         return;
     }
-    std::cout << "Placing settlement at position " << placeNum << std::endl;
 
     // Define the resources required to build a settlement
     std::map<Tile::Resource, int> requiredResources = {
@@ -40,7 +39,6 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         return;
     }
 
-    std::cout << "Checking neighboring settlements..." << std::endl;
     // Check neighboring settlements
     for (Dot* neighbor : settlement.getNeighbors()) {
         if (neighbor->getOwner() != nullptr) {
@@ -49,7 +47,6 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         }
     }
 
-    std::cout << "Checking if resources are sufficient..." << std::endl;
     // If this is the first 2 settlements, no resources are required
     if(startingSettlements <= 0){
         // Check if the player has enough resources
@@ -67,13 +64,11 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         points++;
     }
 
-    std::cout << "Placing the settlement..." << std::endl;
     // Place the settlement
     settlement.buildSettlement(this);
 
     // If this is the second settlement, assign starting resources
     if (startingSettlements == 1) {
-        std::cout << "Assigning starting resources..." << std::endl;
         board.assignStartingResources(settlement);
     }
     startingSettlements--;
