@@ -36,6 +36,7 @@ public:
 	std::string getName();
 	bool getTurn() const;
     void setTurn(bool turn);
+    int getDevCardsBought();
     std::map<Tile::Resource, int>& getResources();
 	void cheatResources();
 
@@ -53,6 +54,7 @@ private:
         {"Year of Plenty", 0},
         {"Monopoly", 0}
     };
+    int devCardsBought;
 	std::vector<Road*> roads;  // Vector to keep track of roads the player has built
 	bool hasThreeKnights;
     bool hasLongestRoad;

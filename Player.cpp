@@ -4,12 +4,13 @@
 #include <stdexcept>
 #include <thread>
 #include <random>
+#include <limits>
 
 using namespace std;
 namespace ariel{
 
 ariel::Player::Player(const std::string& name) 
-	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), roads(2), hasThreeKnights(false), hasLongestRoad(false) {
+	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), devCardsBought(0), roads(2), hasThreeKnights(false), hasLongestRoad(false) {
 	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
 
 	// Initialize the resources map with 0 for each resource type
@@ -20,7 +21,13 @@ ariel::Player::Player(const std::string& name)
 
 void Player::placeSettelemnt(int placeNum, Board& board) {
     if(!this->isTurn) {
-        std::cout << "It is not your turn." << std::endl;
+        std::cerr << "It is not your turn." << std::endl;
+        return;
+    }
+
+    // Check its a valid position 0 - 53
+    if(placeNum < 0 || placeNum > 53){
+        std::cerr << "Invalid settlement location." << std::endl;
         return;
     }
 
@@ -35,14 +42,14 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
     // Check if the settlement is already owned
     Dot& settlement = board.getIntersections().at(placeNum);
     if (settlement.getOwner() != nullptr) {
-        std::cout << "This settlement is already owned by another player." << std::endl;
+        std::cerr << "This settlement is already owned by another player." << std::endl;
         return;
     }
 
     // Check neighboring settlements
     for (Dot* neighbor : settlement.getNeighbors()) {
         if (neighbor->getOwner() != nullptr) {
-            std::cout << "Cannot place settlement here. Neighboring settlement already owned by " << neighbor->getOwner()->getName() << std::endl;
+            std::cerr << "Cannot place settlement here. Neighboring settlement already owned by " << neighbor->getOwner()->getName() << std::endl;
             return;
         }
     }
@@ -52,7 +59,7 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
         // Check if the player has enough resources
         for (const auto& [resource, amount] : requiredResources) {
             if (this->resources[resource] < amount) {
-                std::cout << "Not enough resources to place a settlement." << std::endl;
+                std::cerr << "Not enough resources to place a settlement." << std::endl;
                 return;
             }
         }
@@ -80,9 +87,15 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
 void Player::upgradeToCity(int placeNum, Board& board) {
 	
 	if(this->isTurn == false) {
-		std::cout << "It is not your turn." << std::endl;
+		std::cerr << "It is not your turn." << std::endl;
 		return;
 	}
+
+    // Check its a valid position 0 - 53
+    if(placeNum < 0 || placeNum > 53){
+        std::cerr << "Invalid city location." << std::endl;
+        return;
+    }
 
     // Define the resources required to upgrade to a city
     std::map<Tile::Resource, int> requiredResources = {
@@ -93,14 +106,14 @@ void Player::upgradeToCity(int placeNum, Board& board) {
     // Check if the settlement exists and is owned by the player
     Dot& settlement = board.getIntersections()[placeNum];
     if (settlement.getOwner() != this) {
-        std::cout << "This settlement is not owned by you." << std::endl;
+        std::cerr << "This settlement is not owned by you." << std::endl;
         return;
     }
 
     // Check if the player has enough resources
     for (const auto& [resource, amount] : requiredResources) {
         if (this->resources[resource] < amount) {
-            std::cout << "Not enough resources to upgrade to a city." << std::endl;
+            std::cerr << "Not enough resources to upgrade to a city." << std::endl;
         	return;
         }
     }
@@ -113,7 +126,7 @@ void Player::upgradeToCity(int placeNum, Board& board) {
 	points++;
     // Upgrade the settlement to a city
     settlement.upgradeToCity();
-    std::cout << "Settlement upgraded to a city at position " << placeNum << "." << std::endl;
+    std::cerr << "Settlement upgraded to a city at position " << placeNum << "." << std::endl;
 }
 
 
@@ -121,9 +134,15 @@ void Player::upgradeToCity(int placeNum, Board& board) {
 void Player::placeRoad(int placeNum, Board& board) {
 
 	if(this->isTurn == false) {
-		std::cout << "It is not your turn." << std::endl;
+		std::cerr << "It is not your turn." << std::endl;
 		return;
 	}
+
+    // Check its a valid position 0 - 71
+    if(placeNum < 0 || placeNum > 71){
+        std::cerr << "Invalid road location." << std::endl;
+        return;
+    }
 	
     // Define the resources required to build a road
     std::map<Tile::Resource, int> requiredResources = {
@@ -136,7 +155,7 @@ void Player::placeRoad(int placeNum, Board& board) {
 
     // Check if the road is already owned
     if (roadToBuild.getOwner() != nullptr) {
-        std::cout << "There is already a road at this position." << std::endl;
+        std::cerr << "There is already a road at this position." << std::endl;
         return;
     }
 
@@ -161,7 +180,7 @@ void Player::placeRoad(int placeNum, Board& board) {
     }
 
     if (!validConnection) {
-        std::cout << "The road must connect to an existing road or settlement/city owned by you." << std::endl;
+        std::cerr << "The road must connect to an existing road or settlement/city owned by you." << std::endl;
         return;
     }
 
@@ -171,7 +190,7 @@ void Player::placeRoad(int placeNum, Board& board) {
 		// Check if the player has enough resources
 		for (const auto& [resource, amount] : requiredResources) {
 			if (this->resources[resource] < amount) {
-				std::cout << "Not enough resources to build a road." << std::endl;
+				std::cerr << "Not enough resources to build a road." << std::endl;
 				return;
 			}
 		}
@@ -211,7 +230,7 @@ void Player::checkLongestRoad(Board& board) {
 
 void Player::rollDice(Board& board) {
     if (!this->isTurn) {
-        std::cout << "It is not your turn." << std::endl;
+        std::cerr << "It is not your turn." << std::endl;
         return;
     }
 
@@ -234,9 +253,11 @@ void Player::rollDice(Board& board) {
         bool validTile = false;
         while(!validTile){
             std::cin >> tileNumber;
-            if(tileNumber < 0 || tileNumber > 18 || tileNumber == 7){
-                cout << "Invalid tile number, Please enter a number between 0 and 18 (not 7): ";
-            }else{
+            if (std::cin.fail() || tileNumber < 0 || tileNumber > 18 || tileNumber == 10) {
+                std::cin.clear(); // Clear the error flag
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+                std::cout << "Invalid tile number. Please enter a number between 0 and 18 (not 10 Desert): ";
+            } else {
                 validTile = true;
             }
         }
@@ -251,9 +272,14 @@ void Player::rollDice(Board& board) {
 void Player::trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount) {
 
 	if(this->isTurn == false) {
-		std::cout << "It is not your turn." << std::endl;
+		std::cerr << "It is not your turn." << std::endl;
 		return;
 	}
+
+    if(this == &other){
+        std::cerr << "Cannot trade with yourself." << std::endl;
+        return;
+    }
 
     std::cout << this->name << " offers " << giveAmount << " " << give << " for " << takeAmount << " " << take << " from " << other.name << "." << std::endl;
 
@@ -287,7 +313,7 @@ void Player::trade(Player& other, const std::string& give, const std::string& ta
 
             std::cout << "Trade completed successfully." << std::endl;
         } else {
-            std::cout << "Trade failed: insufficient resources." << std::endl;
+            std::cerr << "Trade failed: insufficient resources." << std::endl;
         }
     } else {
         std::cout << "Trade cancelled." << std::endl;
@@ -306,25 +332,9 @@ Tile::Resource Player::stringToResource(const std::string& resource) {
 void Player::buyDevelopmentCard(Board& board) {
 
 	if(this->isTurn == false) {
-		std::cout << "It is not your turn." << std::endl;
+		std::cerr << "It is not your turn." << std::endl;
 		return;
 	}
-
-    // Define the resources required to buy a development card
-    std::map<Tile::Resource, int> requiredResources = {
-        {Tile::Resource::ORE, 1},
-        {Tile::Resource::WOOL, 1},
-        {Tile::Resource::GRAIN, 1}
-    };
-
-    // Check if the player has enough resources
-    for (const auto& [resource, amount] : requiredResources) {
-        if (this->resources[resource] < amount) {
-            std::cout << "Not enough resources to buy a development card." << std::endl;
-        	return;
-        }
-    }
-
 
     // Get the available development cards from the board
     std::map<std::string, int>& availableCards = board.getDevelopmentCards();
@@ -340,9 +350,25 @@ void Player::buyDevelopmentCard(Board& board) {
     }
 
     if (!cardsAvailable) {
-        std::cout << "No development cards left to draw." << std::endl;
+        std::cerr << "No development cards left to draw." << std::endl;
         return;
     }
+
+    // Define the resources required to buy a development card
+    std::map<Tile::Resource, int> requiredResources = {
+        {Tile::Resource::ORE, 1},
+        {Tile::Resource::WOOL, 1},
+        {Tile::Resource::GRAIN, 1}
+    };
+
+    // Check if the player has enough resources
+    for (const auto& [resource, amount] : requiredResources) {
+        if (this->resources[resource] < amount) {
+            std::cerr << "Not enough resources to buy a development card." << std::endl;
+        	return;
+        }
+    }
+
 
     // Deduct the resources from the player
     for (const auto& [resource, amount] : requiredResources) {
@@ -369,7 +395,8 @@ void Player::buyDevelopmentCard(Board& board) {
 
 	checkKnights();
 
-    std::cout << "Development card " << selectedCard << " bought successfully." << std::endl;
+    std::cout << "Development card " << selectedCard << " bought successfully." << std::endl;  
+    devCardsBought++;
 }
 
 void Player::checkKnights() {
@@ -403,6 +430,11 @@ map<Tile::Resource, int>& Player::getResources() {
 void Player::setTurn(bool turn) {
     isTurn = turn;
 }
+
+int Player::getDevCardsBought(){
+    return devCardsBought;
+}
+
 
 void Player::printResources() const {
 	cout << "Resources for " << name << ":" << endl;

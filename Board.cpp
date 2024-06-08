@@ -270,15 +270,28 @@ void Board::assignResources(int rolledNumber) {
  *
  * @param dot The dot (intersection) to assign starting resources to.
  */
+// void Board::assignStartingResources(Dot& dot) {
+//     Player* owner = dot.getOwner();
+//     if (owner != nullptr) {
+//         for (const Tile& tile : dot.getNeighborTiles()) {
+//             Tile::Resource resource = tile.getResource();
+//             owner->getResources()[resource]++;
+//         }
+//     }
+// }
 void Board::assignStartingResources(Dot& dot) {
     Player* owner = dot.getOwner();
     if (owner != nullptr) {
+        std::cout << "Assigning resources to player: " << owner->getName() << std::endl;
         for (const Tile& tile : dot.getNeighborTiles()) {
             Tile::Resource resource = tile.getResource();
-            owner->getResources()[resource]++;
+            if (resource != Tile::Resource::DESERT) { // Exclude desert tiles
+                owner->getResources()[resource]++;
+            }
         }
     }
 }
+
 
 std::vector<Dot>& Board::getIntersections() {
     return Intersections;
