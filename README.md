@@ -1,86 +1,109 @@
-# קטאן - מחלקות וירושה
-המתיישבים של קטאן הוא משחק קופסא ל-3 עד 4 שחקנים המשלב הן חשיבה אסטרטגית, ניהול משאבים ויכולת מסחר. מטרת המשחק היא לצבור ראשון 10 נקודות ניצחון.
-את הוראות המשחק המלא ניתן למצוא כאן: https://www.hakubia.com/wp-content/uploads/2021/01/%D7%A7%D7%98%D7%90%D7%9F.pdf.
-במטלה אתם תממשו גרסה פשוטה יותר של המשחק עבור 3 שחקנים.
-## חוקי המשחק
-המשחק מורכב מלוח המכיל 19 חלקות אדמה מוקפות בים. כל חלקת אדמה נותנת משאב כלשהו (חוץ מהמדבר). חלקות האדמה במשחק הן: יער (מניב עץ), גבעות (מניבות לבנים), אדמת מרעה (מניבה צמר), אדמה חקלאית (מניבה שיבולת), הרים (מניבים ברזל), מדבר (לא מניב כלום).
-כל חלקי המפה מקבלים מספר כלשהו בין 2 ל-12. 
-### קלפים, יישובים, ערים ומשאבים
-כל שחקן בעל משאבים (כגון שיבולת, ברזל, לבנים וכו') יכול לרכוש איתם דברים שונים במשחק כמו קלפי פיתוח, יישובים, ערים ודרכים.
-- קלף פיתוח: מחירו של קלף פיתוח הוא ברזל 1, צמר 1 ושיבולת 1. השחקן יכול לקבל אחד מ-3 סוגים שונים של קלפים: 1. קלף קידום: זהו קלף המעניק הטבה לשחקן (לאחר מכן הקלף נעלם). בין הקלפים הללו ניתן למצוא: מונופול - השחקן בוחר משאב כלשהו וכל שאר השחקנים מחוייבים להעביר לו את המשאב הזה. בניית דרכים - השחקן יכול לבנות 2 דרכים במפה ללא עלות. שנת שפע - השחקן זוכה לקבל מהבנק שני קלפים של משאבים לבחירה ולהשתמש בהם באותו התור. 2. אבירים - שחקן המחזיק ב-3 קלפים כאלה, מקבל את קלף הצבא הגדול ביותר המקנה לו 2 נקודות ניצחון (אם איבד אביר אחד, הקלף נלקח מהשחקן. שימו לב שיש בדיוק 3 קלפים כאלה!). 3. קלפי נקודות ניצחון - יש 4 קלפים שונים המעניקים נקודת ניצחון למי שמחזיק בהם.
-- בנייה: ניתן לבנות דרכים, ערים ויישובים בצורה הבאה: 1. קטע דרך: עלותו לבנים 1 ועץ 1. קטע דרך יכול להיות מחובר רק ליישוב (או עיר) בבעלות השחקן או לקטע דרך נוסף. 2. יישוב: עלות היישוב היא לבנה 1, עץ 1, צמר 1 ושיבולת 1. ניתן לבנות יישוב על צומת שאליה מובילה דרך אחת לפחות ומברחק של 2 קטעי דרך מיישוב אחר. בניית יישוב מקנה לשחקן נקודת ניצחון אחת. 3. עיר: עיר יכולה להחליף יישוב קיים. עלות הבנייה היא ברזל 3 ושיבולת 2. ברגע שמשדרגים יישוב לעיר, השחקן מאבד את הנקודה של היישוב ומקבל 2 נקודות על הבנייה. עיר מעניקה לשחקן פי-2 יותר משאבים מכל חבלי הארץ הסמוכים לה.
-- משאבים: כאמור, המשאבים מתקבלים מחבלי הארץ השונים. כאשר שחקן מטיל את קוביות המשחק, כל השחקנים מקבלים משאבים בהתאם למספר שיצא בהטלה (כלומר אם יצא 3 בהטלה, אז שחקנים עם יישובים/ערים הגובלים עם חבלי ארץ בעלי אותו מספר זוכים במשאב).
-- מסחר: שחקנים יכולים לבצע מסחר ביניהם (כלומר להחליף קלפים או משאבים) בהתאם לאיך שהם קובעים.
-### מהלך המשחק
-כל שחקן מתחיל את המשחק עם 2 יישובים ו-2 קטעי דרך המעניקים לו 2 נקודות ניצחון. בנוסף, השחקנים מקבלים משאבים התחלתיים בהתאם למקומות שבהם הם מיקמו את היישובים (משאב אחד מכל משאב אפשרי).
-סדר המשחק נקבע באופן שרירותי (לשיקולכם). בכל תור השחקנים מטילים 2 קוביות. בהתאם לתוצאת ההטלה, השחקנים מקבלים משאבים כמו שפורט מקודם.
-שחקן בתור נתון עושה את הפעולות הבאות לפי הסדר (לאחר הטלת הקוביות):
-- הוא יכול לסחור (כלומר להחליף קלפים או משאבים).
-- הוא יכול לבנות דרכים, יישובים או ערים ויכול לקנות קלפי פיתוח.
-  אם השחקן מנצל את אחד מקלפי הפיתוח שברשותו, התור אוטומטית עובר לשחקן הבא (השחקן יכול לנצל את קלף הפיתוח עוד לפני הטלת הקוביות, במקרה כזה התור עובר לשחקן הבא).
-  אם סכום ההטלה הוא 7, על כל השחקנים בעלי יותר מ-7 קלפי משאבים לבחור מחצית מהקלפים ולהחזיר אותם לערימה.
-  ### סיום המשחק
-  המשחק מסתיים בתור שבו אחד השחקנים הגיע ל-10 או יותר נקודות ניצחון. כדי לנצח במשחק, השחקן צריך שיגיע תורו ובאותו התור יהיו לו 10 נקודות לכל הפחות.
-
-
-שימו לב - במטלה הזאת אתם לא מקבלים קבצים לדוגמה מלבד הדמו. עליכם לחשוב לבד על הלוגיקה של המשחק ולממש את החוקים (כמובן שאתם יכולים לממש לפי ראות עיניכם אבל עם הסבר). במטלה הזאת אתם תיבחנו גם על יצירתיות. נסו לבנות את לוח המשחק בצורה שתתאים למשחק המקורי (חשבו איך לממש דבר כזה, אולי להוסיף עוד מחלקות?). כמו כן, **חובה** לצרף בדיקות יחידה למטלה הזאת. הסיבה היא פשוטה - המטלה מורכבת מאוד ואתם נדרשים לבדוק את הקוד שלכם. 
-
-יש להוסיף קובץ Makefile כאשר הפקודה ``` make catan ``` מריצה את התוכנית הראשית שלכם (המדגימה סיבוב אחד במשחק). עליכם להגיש קובץ ```README``` המסביר את המימוש שלכם (כלומר מהם חוקי המשחק שהגדרתם), ההיררכיה של המחלקות ובאילו ספריות השתמשתם. עליכם גם לתאר את כל השיטות שכתבתם, ולכתוב תוכנית ```main``` המריצה סיבוב תקין של המשחק. כמו כן, עליכם לכתוב בתחילת כל קובץ את מספר תעודת הזהות שלכם ואת המייל. אי עמידה בהנחיות תגרור הפחתה בציון. 
-בהצלחה!
-
-
 # Catan - Classes and Inheritance
 
-**Settlers of Catan** is a board game for 3 to 4 players that combines strategic thinking, resource management, and trading skills. The goal of the game is to be the first to score 10 victory points. The full game instructions can be found [here](https://www.hakubia.com/wp-content/uploads/2021/01/%D7%A7%D7%98%D7%90%D7%9F.pdf). In this assignment, you will implement a simpler version of the game for 3 players.
+The Settlers of Catan is a board game for 3 to 4 players that combines strategic thinking, resource management, and trading skills. The objective of the game is to be the first to accumulate 10 victory points. You can find the full game rules [here](https://www.hakubia.com/wp-content/uploads/2021/01/%D7%A7%D7%98%D7%90%D7%9F.pdf). This project implements a simplified version of the game for 3 players.
 
-## Rules of the Game
+## Game Rules
 
-The game consists of a board containing 19 plots of land surrounded by the sea. Each plot of land provides some resource (except for the desert). The plots of land in the game are:
-- **1. Forest** (yields wood)
-- **2. Hills** (yields bricks)
-- **3. Pasture** (yields wool)
-- **4. Fields** (yields grain)
-- **5. Mountains** (yields ore)
-- **6. Desert** (yields nothing)
+### Game Board
+The game board consists of 19 hexagonal tiles, each representing different types of land:
+- **Forest**: Produces lumber.
+- **Hills**: Produces bricks.
+- **Pasture**: Produces wool.
+- **Fields**: Produces grain.
+- **Mountains**: Produces ore.
+- **Desert**: Produces no resources.
 
-Each part of the map is assigned a number between 2 and 12.
+Each tile is assigned a number from 2 to 12. When a player rolls the dice, any tile matching the rolled number produces resources for adjacent settlements and cities.
 
-## Cards, Settlements, Cities, and Resources
+### Players and Resources
+Each player starts with:
+- 2 settlements (worth 1 victory point each)
+- 2 roads
+- Initial resources based on the placement of their starting settlements.
 
-Players with resources (such as grain, ore, bricks, etc.) can use them to purchase various items in the game such as development cards, settlements, cities, and roads.
+Resources are used to build roads, settlements, cities, and to buy development cards. The resources include:
+- **Lumber**
+- **Brick**
+- **Wool**
+- **Grain**
+- **Ore**
 
-### Development Card
-The cost of a development card is 1 ore, 1 wool, and 1 grain. The player can get one of three different types of cards:
-1. **Progress Card:** This card gives a benefit to the player (after which the card is discarded). Examples include:
-   - **Monopoly:** The player chooses a resource, and all other players must transfer that resource to him.
-   - **Road Building:** The player can build 2 roads on the map at no cost.
-   - **Year of Plenty:** The player receives two resource cards of their choice from the bank and can use them in the same turn.
-2. **Knight:** A player who holds 3 knight cards receives the largest army card, which gives him 2 victory points (if the player loses 1 knight card, the largest army card is taken away. Note that there are exactly 3 knight cards).
-3. **Victory Point Card:** There are 4 different cards that each grant a victory point to the holder.
+### Building and Development
+Players can use resources to:
+- **Build Roads**: Cost 1 brick and 1 lumber.
+- **Build Settlements**: Cost 1 brick, 1 lumber, 1 wool, and 1 grain. Settlements must be placed on intersections connected by a road and at least two edges away from other settlements.
+- **Upgrade Settlements to Cities**: Cost 3 ore and 2 grain. Cities produce double resources and are worth 2 victory points.
+- **Buy Development Cards**: Cost 1 ore, 1 wool, and 1 grain. Development cards can provide bonuses such as additional victory points, knights for the largest army, and special actions.
 
-### Construction
-Roads, cities, and settlements can be built in the following way:
-1. **Road Segment:** It costs 1 brick and 1 wood. A road segment can only connect to a settlement (or city) owned by the player or to another road segment.
-2. **Settlement:** The cost of a settlement is 1 brick, 1 wood, 1 wool, and 1 grain. A settlement can be built on an intersection connected by at least one road and at least 2 road segments away from another settlement. Building a settlement gives the player one victory point.
-3. **City:** A city can replace an existing settlement. The construction cost is 3 ore and 2 grain. Once a settlement is upgraded to a city, the player loses the point for the settlement and receives 2 points for the city. A city grants the player twice as many resources from all adjacent land plots.
+### Gameplay
+1. **Initial Placement**: Players take turns placing their initial settlements and roads.
+2. **Turn Sequence**:
+   - Roll two dice to produce resources.
+   - Trade resources with other players.
+   - Build roads, settlements, cities, or buy development cards.
+3. **End of Turn**: The next player takes their turn.
+4. **Special Rolls**: Rolling a 7 activates the robber, which blocks resource production for the tile it is placed on and forces players with more than 7 cards to discard half.
+5. **Winning the Game**: The first player to reach 10 victory points wins.
 
-### Resources
-Resources are obtained from the various land plots. When a player rolls the dice, all players receive resources according to the number rolled (e.g., if a 3 is rolled, then players with settlements/cities bordering land plots with the number 3 receive a resource).
+## Project Structure
 
-### Trading
-Players can trade with each other (i.e., exchange cards or resources) as they see fit.
+### Classes and Their Responsibilities
 
-## Progress of the Game
-Each player starts the game with 2 settlements and 2 road segments, giving them 2 victory points. Additionally, players receive starting resources based on the locations of their settlements (one resource from each adjacent land plot). The order of play is determined arbitrarily (at your discretion). In each turn, players roll 2 dice. Depending on the roll result, players receive resources as described earlier. In each turn, a player does the following in order (after rolling the dice):
+1. **Catan**: Manages the overall game flow, including turn management and determining the winner.
+2. **Board**: Represents the game board, including tiles, intersections, and roads.
+3. **Player**: Represents a player, managing their resources, settlements, roads, and development cards.
+4. **Dot**: Represents intersections on the board where settlements and cities can be built.
+5. **Road**: Represents roads that players can build between intersections.
+6. **Tile**: Represents a tile on the game board, holding resource and token information.
 
-1. Trade (i.e., exchange cards or resources).
-2. Build roads, settlements, or cities, and buy development cards. If the player uses a development card, the turn automatically passes to the next player (the player can use a development card even before rolling the dice, in which case the turn immediately passes to the next player). If a 7 is rolled, all players with more than 7 resource cards must return half of their cards to the pile.
+### Main Function
 
-## Game Over
-The game ends in the turn where one player reaches 10 or more victory points. To win, the player needs to have at least 10 points at the start of their turn.
+The main function demonstrates the setup and a sample round of gameplay:
+- Initializes players and the game board.
+- Sets up the game window using SFML for graphical representation.
+- Demonstrates placing settlements, roads, rolling dice, and trading resources.
+- Prints player points and determines the winner.
 
-## Assignment Instructions
+### Dependencies
 
-Please note - in this assignment, you do not receive sample files other than the demo. You must think independently about the game logic and implement the rules (of course, you can implement them as you see fit, but with an explanation). In this assignment, you will also be tested on creativity. Try to build the game board to match the original game (think about how to implement this, maybe add more classes?). Also, unit tests must be included in this assignment. The reason is simple - the task is very complex and you are required to check your code.
+- **SFML**: Used for rendering the game board and UI elements.
 
-A Makefile must be included where the command `make catan` runs your main program (which demonstrates one round of the game). You must submit a `README.md` file explaining your implementation (i.e., what are the game rules you defined), the class hierarchy, and which libraries you used. You must also describe all the methods you wrote and write a main program that runs a proper round of the game. Additionally, you must include your ID number and email at the beginning of each file. Failure to comply with the guidelines will result in a grade reduction.
+## Compiling and Running
+
+### Makefile
+
+A `Makefile` is provided to compile and run the project. The `make catan` command compiles the main game and runs a demonstration of a single round of gameplay.
+
+### Command
+
+```sh
+make catan
+./catan
+./
+```
+```sh
+make clean
+```
+
+## Testing
+
+Unit tests are provided to ensure the correct functionality of the game logic. Tests cover:
+
+- Resource allocation
+- Validity of building placements
+- Turn management
+- Development card purchases
+- Victory point calculations
+
+## Additional Notes
+
+- Ensure the SFML library is installed on your system for graphical output.
+- The project includes `Combined_Map.png` for the game board and `arial.ttf` for font rendering.
+
+## Contact Information
+
+For any queries, you can reach out to:
+
+**Name**: Gidi Rabi  
+**Email**: gidirabi111@gmail.com  
+**Location**: Petah Tikva, Israel
