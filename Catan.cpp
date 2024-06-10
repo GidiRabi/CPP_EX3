@@ -6,6 +6,14 @@
 using namespace std;
 namespace ariel{
 
+/**
+ * Constructor for the Catan class.
+ * Initializes the game with three players and a game board.
+ *
+ * @param p1 Reference to the first player.
+ * @param p2 Reference to the second player.
+ * @param p3 Reference to the third player.
+ */
 Catan::Catan(Player& p1, Player& p2, Player& p3) 
 	: player1(p1), player2(p2), player3(p3), board(Board(p1,p2,p3)){
 
@@ -13,6 +21,9 @@ Catan::Catan(Player& p1, Player& p2, Player& p3)
 
 }
 
+/*
+ * Chooses the starting player for the game. Player 1 is set to start the game.
+ */
 void Catan::ChooseStartingPlayer() {
 	cout << "Player 1 starts the game! Good Luck GG HF" << endl;
     // Player1 will be the starting player
@@ -21,6 +32,10 @@ void Catan::ChooseStartingPlayer() {
 	currentPlayerIndex = 1;
 }
 
+/*
+ * Ends the current player's turn and passes the turn to the next player.
+ * Updates the currentPlayerIndex to reflect the player whose turn is next.
+ */
 void Catan::endTurn(){
 
 	std::cout << "Player " << currentPlayerIndex << " has ended his turn." << std::endl;
@@ -45,16 +60,23 @@ void Catan::endTurn(){
     std::cout << "It's player " << currentPlayerIndex << " turn now." << std::endl;
 }
 
+/**
+ * Retrieves the game board.
+ *
+ * @return Reference to the game board.
+ */
 ariel::Board& Catan::getBoard() {
     return board;
 }
 
-
-
+/*
+ * Prints the winner(s) of the game.
+ * The player(s) with the most points (over 10 points) are declared winners.
+ * If there is a tie, all players with the most points are declared winners.
+ * If no player has over 10 points, "None" is printed.
+ */
 void Catan::printWinner() {
-    // go over all players and print the winner (the player with the most points)
-	// if there is a tie, print all the winners
-	// must have over 10 points to win
+
 	int maxPoints = 0;
 	if (player1.getPoints() >= maxPoints) {
 		maxPoints = player1.getPoints();
@@ -82,13 +104,21 @@ void Catan::printWinner() {
 	}
 }
 
+/**
+ * Retrieves the index of the current player.
+ *
+ * @return Integer representing the current player's index.
+ */
 int Catan::getCurrentPlayer() {
 	return currentPlayerIndex;
 }
 
+/*
+ * Destructor for the Catan class.
+ * Performs any necessary cleanup when a Catan object is destroyed.
+ */
 Catan::~Catan() {
 	
 }
-
 
 }

@@ -9,6 +9,12 @@
 using namespace std;
 namespace ariel{
 
+/**
+ * Constructor for the Player class.
+ * Initializes a player with a name and default starting values for resources, points, and game elements.
+ *
+ * @param name The name of the player.
+ */
 ariel::Player::Player(const std::string& name) 
 	: name(name),points(2) ,isTurn(false), startingSettlements(2), startingRoads(2), devCardsBought(0), roads(2), hasThreeKnights(false), hasLongestRoad(false) {
 	// Each player starts with 2 settlements and 2 road segments, giving them 2 victory points
@@ -19,6 +25,13 @@ ariel::Player::Player(const std::string& name)
 	}
 }
 
+/**
+ * Places a settlement for the player on the specified position on the board.
+ * Checks if the position is valid and if the player has enough resources.
+ *
+ * @param placeNum The position number where the settlement will be placed.
+ * @param board The game board.
+ */
 void Player::placeSettelemnt(int placeNum, Board& board) {
     if(!this->isTurn) {
         std::cerr << "It is not your turn." << std::endl;
@@ -83,7 +96,13 @@ void Player::placeSettelemnt(int placeNum, Board& board) {
     std::cout << "Settlement placed successfully at position " << placeNum << "." << std::endl;
 }
 
-
+/**
+ * Upgrades a settlement to a city at the specified position on the board.
+ * Checks if the position is valid and if the player has enough resources.
+ *
+ * @param placeNum The position number where the city will be placed.
+ * @param board The game board.
+ */
 void Player::upgradeToCity(int placeNum, Board& board) {
 	
 	if(this->isTurn == false) {
@@ -129,8 +148,13 @@ void Player::upgradeToCity(int placeNum, Board& board) {
     std::cerr << "Settlement upgraded to a city at position " << placeNum << "." << std::endl;
 }
 
-
-
+/**
+ * Places a road for the player at the specified position on the board.
+ * Checks if the position is valid and if the player has enough resources.
+ *
+ * @param placeNum The position number where the road will be placed.
+ * @param board The game board.
+ */
 void Player::placeRoad(int placeNum, Board& board) {
 
 	if(this->isTurn == false) {
@@ -210,6 +234,11 @@ void Player::placeRoad(int placeNum, Board& board) {
     std::cout << "Road built successfully at position " << placeNum << "." << std::endl;
 }
 
+/**
+ * Checks if the player has the longest road and updates the game state accordingly.
+ *
+ * @param board The game board.
+ */
 void Player::checkLongestRoad(Board& board) {
     if (roads.size() >= 5) {
         std::vector<Player*>& players = board.getPlayers();
@@ -228,6 +257,12 @@ void Player::checkLongestRoad(Board& board) {
     }
 }
 
+/**
+ * Rolls the dice to generate a number between 2 and 12, simulating a dice roll.
+ * If a 7 is rolled, the player is prompted to move the robber.
+ *
+ * @param board The game board.
+ */
 void Player::rollDice(Board& board) {
     if (!this->isTurn) {
         std::cerr << "It is not your turn." << std::endl;
@@ -268,7 +303,16 @@ void Player::rollDice(Board& board) {
     }
 }
 
-
+/**
+ * Trades resources with another player.
+ * Checks if the trade is valid and updates the resources for both players.
+ *
+ * @param other The other player to trade with.
+ * @param give The resource to give.
+ * @param take The resource to take.
+ * @param giveAmount The amount of the resource to give.
+ * @param takeAmount The amount of the resource to take.
+ */
 void Player::trade(Player& other, const std::string& give, const std::string& take, int giveAmount, int takeAmount) {
 
 	if(this->isTurn == false) {
@@ -320,6 +364,12 @@ void Player::trade(Player& other, const std::string& give, const std::string& ta
     }
 }
 
+/**
+ * Converts a resource name string to a Tile::Resource enum.
+ *
+ * @param resource The resource name string.
+ * @return The corresponding Tile::Resource enum value.
+ */
 Tile::Resource Player::stringToResource(const std::string& resource) {
     if (resource == "brick") return Tile::Resource::BRICK;
     if (resource == "wood") return Tile::Resource::LUMBER;
@@ -329,6 +379,12 @@ Tile::Resource Player::stringToResource(const std::string& resource) {
     throw std::invalid_argument("Unknown resource: " + resource);
 }
 
+/**
+ * Buys a development card for the player.
+ * Checks if the player has enough resources and updates the player's development cards.
+ *
+ * @param board The game board.
+ */
 void Player::buyDevelopmentCard(Board& board) {
 
 	if(this->isTurn == false) {
@@ -399,6 +455,9 @@ void Player::buyDevelopmentCard(Board& board) {
     devCardsBought++;
 }
 
+/*
+ * Checks if the player has the largest army and updates the game state accordingly.
+ */
 void Player::checkKnights() {
     if (developmentCards["Knight"] >= 3 && !hasThreeKnights) {
         points += 2;
@@ -407,35 +466,70 @@ void Player::checkKnights() {
     }
 }
 
+/**
+ * Retrieves the current points of the player.
+ *
+ * @return The player's current points.
+ */
 int Player::getPoints() {
     return points;
 }
 
+/*
+ * Prints the current points of the player.
+ */
 void Player::printPoints() {
 	std::cout << name << " has " << points << " points." << std::endl;
 }
 
+/**
+ * Retrieves the name of the player.
+ *
+ * @return The player's name.
+ */
 string Player::getName() {
 	return name;
 }
 
+/**
+ * Retrieves whether it is the player's turn.
+ *
+ * @return True if it is the player's turn, false otherwise.
+ */
 bool Player::getTurn() const{
 	return isTurn;
 }
 
+/**
+ * Retrieves the resources of the player.
+ *
+ * @return A map of resources and their amounts.
+ */
 map<Tile::Resource, int>& Player::getResources() {
     return resources;
 }
 
+/**
+ * Sets whether it is the player's turn.
+ *
+ * @param turn True to set it as the player's turn, false otherwise.
+ */
 void Player::setTurn(bool turn) {
     isTurn = turn;
 }
 
+/**
+ * Retrieves the number of development cards bought by the player.
+ *
+ * @return The number of development cards bought.
+ */
 int Player::getDevCardsBought(){
     return devCardsBought;
 }
 
-
+/*
+ * Prints the resources of the player.
+ */
 void Player::printResources() const {
 	cout << "Resources for " << name << ":" << endl;
     for (const auto& [resource, amount] : resources) {
@@ -444,6 +538,12 @@ void Player::printResources() const {
 	cout << endl;
 }
 
+/**
+ * Converts a Tile::Resource enum to a resource name string.
+ *
+ * @param resource The Tile::Resource enum.
+ * @return The corresponding resource name string.
+ */
 string Player::resourceToString(Tile::Resource resource) const {
     switch (resource) {
         case Tile::Resource::BRICK: return "BRICK";
@@ -456,6 +556,9 @@ string Player::resourceToString(Tile::Resource resource) const {
     }
 }
 
+/*
+ * Prints the player's statistics, including development cards and roads.
+ */
 void Player::printStats(){
 	std::cout << "Player: " << name << std::endl;
 	std::cout << "Development Cards: " << std::endl;
@@ -470,6 +573,9 @@ void Player::printStats(){
 
 }
 
+/*
+ * Activates a cheat mode that sets the player's resources to 500 each.
+ */
 void Player::cheatResources() {
 
     cout << "Cheat activated for "  << this->name << ": Resources set to 500 each." << endl;

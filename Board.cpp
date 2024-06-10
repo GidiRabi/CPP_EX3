@@ -8,17 +8,32 @@
 #include <random>
 
 namespace ariel {
+
+/**
+ * Constructor for the Board class.
+ * Initializes the game board with three players and sets up the initial game state.
+ *
+ * @param p1 Reference to the first player.
+ * @param p2 Reference to the second player.
+ * @param p3 Reference to the third player.
+ */
 Board::Board(Player& p1, Player& p2, Player& p3) 
     : robberLocation(10), players({&p1, &p2, &p3}){
     initializeBoard();
 }
 
+/*
+ * Initializes the game board by creating tiles, intersections, and roads.
+ */
 void Board::initializeBoard() {
     createTiles();
 	createIntersections();
 	createRoads();
 }
 
+/*
+ * Creates and initializes the tiles on the game board.
+ */
 void Board::createTiles() {
     tiles.push_back(Tile("Pasture", Tile::Resource::WOOL, 12));
     tiles.push_back(Tile("Hills", Tile::Resource::ORE, 8));
@@ -41,6 +56,9 @@ void Board::createTiles() {
     tiles.push_back(Tile("Desert", Tile::Resource::BRICK, 3)); 
 }
 
+/*
+ * Creates and initializes the intersections (dots) on the game board.
+ */
 void Board::createIntersections() {
 	int number = 0;
     Intersections.push_back(Dot({tiles[0]}, number++)); // Dot 0
@@ -156,6 +174,9 @@ void Board::createIntersections() {
 
 }
 
+/*
+ * Creates and initializes the roads on the game board.
+ */
 void Board::createRoads() {
 	int number = 0;
 	Roads.push_back(Road(&Intersections[0], &Intersections[1], number++)); // Road 0
@@ -270,15 +291,6 @@ void Board::assignResources(int rolledNumber) {
  *
  * @param dot The dot (intersection) to assign starting resources to.
  */
-// void Board::assignStartingResources(Dot& dot) {
-//     Player* owner = dot.getOwner();
-//     if (owner != nullptr) {
-//         for (const Tile& tile : dot.getNeighborTiles()) {
-//             Tile::Resource resource = tile.getResource();
-//             owner->getResources()[resource]++;
-//         }
-//     }
-// }
 void Board::assignStartingResources(Dot& dot) {
     Player* owner = dot.getOwner();
     if (owner != nullptr) {
@@ -292,31 +304,65 @@ void Board::assignStartingResources(Dot& dot) {
     }
 }
 
-
+/**
+ * Retrieves the intersections (dots) on the board.
+ *
+ * @return A vector of dots representing the intersections on the board.
+ */
 std::vector<Dot>& Board::getIntersections() {
     return Intersections;
 }
 
+/**
+ * Retrieves the tiles on the board.
+ *
+ * @return A vector of tiles representing the tiles on the board.
+ */
 std::vector<Tile>& Board::getTiles() {
     return tiles;
 }
 
+/**
+ * Retrieves the roads on the board.
+ *
+ * @return A vector of roads representing the roads on the board.
+ */
 std::vector<Road>& Board::getRoads() {
     return Roads;
 }
 
+/**
+ * Retrieves the development cards available on the board.
+ *
+ * @return A map of development card names and their quantities.
+ */
 std::map<std::string, int>& Board::getDevelopmentCards() {
     return developmentCards;
 }
 
+/**
+ * Retrieves the players in the game.
+ *
+ * @return A vector of pointers to the players in the game.
+ */
 std::vector<Player*>& Board::getPlayers() {
     return players;
 }
 
+/**
+ * Sets the players in the game to a new list of players.
+ *
+ * @param newPlayers A vector of pointers to the new players.
+ */
 void Board::setPlayers(const std::vector<Player*>& newPlayers) {
     players = newPlayers;
 }
 
+/**
+ * Sets the location of the robber on the board.
+ *
+ * @param location The new location index for the robber.
+ */
 void Board::setRobberLocation(int location) {
 	robberLocation = location;
 }
